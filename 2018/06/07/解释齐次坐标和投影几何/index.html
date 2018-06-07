@@ -12,6 +12,8 @@
     
     <title>
         
+            解释齐次坐标和投影几何 | 
+        
         潮落夜江斜月里
     </title>
 
@@ -65,7 +67,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="潮落夜江斜月里">
+    <meta property="og:title" content="解释齐次坐标和投影几何 | 潮落夜江斜月里">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="我总是躲在梦与季节的深处，听花与黑夜唱尽梦魇，唱尽繁华，唱断所有记忆的来路。">
     
@@ -76,7 +78,7 @@
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="潮落夜江斜月里">
+    <meta name="twitter:title" content="解释齐次坐标和投影几何 | 潮落夜江斜月里">
     <meta name="twitter:description" content="我总是躲在梦与季节的深处，听花与黑夜唱尽梦魇，唱尽繁华，唱断所有记忆的来路。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -110,7 +112,7 @@
         },
         "description": "听花与黑夜唱尽梦魇"
     },
-    "headline": "",
+    "headline": "解释齐次坐标和投影几何",
     "url": "http://yoursite.com/2018/06/07/解释齐次坐标和投影几何/index.html",
     "datePublished": "6月 07, 2018",
     "dateModified": "6月 07, 2018",
@@ -326,7 +328,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解释齐次坐标和投影几何"><span class="post-toc-number">1.</span> <span class="post-toc-text">解释齐次坐标和投影几何</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#应用于3D"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">应用于3D</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#当W-1的时候"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">当W = 1的时候</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数学上"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">数学上</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#齐次坐标在计算机图形学中的应用"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">齐次坐标在计算机图形学中的应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3D坐标的平移矩阵"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">3D坐标的平移矩阵</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#透视变换"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">透视变换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#放置方向光"><span class="post-toc-number">1.4.3.</span> <span class="post-toc-text">放置方向光</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#应用于3D"><span class="post-toc-number">1.</span> <span class="post-toc-text">应用于3D</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#当W-1的时候"><span class="post-toc-number">2.</span> <span class="post-toc-text">当W = 1的时候</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数学上"><span class="post-toc-number">3.</span> <span class="post-toc-text">数学上</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#齐次坐标在计算机图形学中的应用"><span class="post-toc-number">4.</span> <span class="post-toc-text">齐次坐标在计算机图形学中的应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3D坐标的平移矩阵"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">3D坐标的平移矩阵</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#透视变换"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">透视变换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#放置方向光"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">放置方向光</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -364,7 +366,7 @@
         
     
             <p class="article-headline-p">
-                
+                解释齐次坐标和投影几何
             </p>
         </div>
 
@@ -423,7 +425,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=&url=http://yoursite.com/2018/06/07/解释齐次坐标和投影几何/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=解释齐次坐标和投影几何&url=http://yoursite.com/2018/06/07/解释齐次坐标和投影几何/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -432,7 +434,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=&url=http://yoursite.com/2018/06/07/解释齐次坐标和投影几何/index.html&via=Super洛伽" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=解释齐次坐标和投影几何&url=http://yoursite.com/2018/06/07/解释齐次坐标和投影几何/index.html&via=Super洛伽" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -462,7 +464,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=潮落夜江斜月里&title=&summary=我总是躲在梦与季节的深处，听花与黑夜唱尽梦魇，唱尽繁华，唱断所有记忆的来路。&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2018/06/07/解释齐次坐标和投影几何/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=潮落夜江斜月里&title=解释齐次坐标和投影几何&summary=我总是躲在梦与季节的深处，听花与黑夜唱尽梦魇，唱尽繁华，唱断所有记忆的来路。&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2018/06/07/解释齐次坐标和投影几何/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -480,8 +482,7 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h1 id="解释齐次坐标和投影几何"><a href="#解释齐次坐标和投影几何" class="headerlink" title="解释齐次坐标和投影几何"></a>解释齐次坐标和投影几何</h1><hr>
-<p>翻译自：<a href="https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/，" target="_blank" rel="noopener">https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/，</a> 有改动</p>
+        <p>翻译自：<a href="https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/，" target="_blank" rel="noopener">https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/，</a> 有改动</p>
 <p><img src="https://www.tomdalling.com/images/posts/explaining-homogeneous-coordinates/main-image.png" alt="此处输入图片的描述"><br>在本文中，我将尽可能简单地解释齐次坐标(即4D坐标)。在之前的文章中，我们用了4D向量来做矩阵乘法，但是我从来没有真正定义过四维数。现在是时候近距离观察投影几何了。</p>
 <p>##术语</p>
 <p>在使用3D技术的大多数时候，我们都在考虑欧几里得几何的关系——即三维空间中的坐标(X、Y、Z)。然而，在某些情况下，用投影几何学来思考是有用的。投影几何除了X、Y和Z之外有一个额外的维度，叫做W。这个四维空间称为“投影空间（projective space）”，投影空间中的坐标称为“齐次坐标（homogeneous coordinates）”。</p>
