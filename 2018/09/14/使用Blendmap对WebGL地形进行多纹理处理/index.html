@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.4.0 -->
+    <script>window.materialVersion = "1.4.0"</script>
+
+    <!-- Title -->
+    
+    <title>
+        
+            使用Blendmap对WebGL地形进行多纹理处理 | 
+        
+        潮落夜江斜月里
+    </title>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+        <link rel="dns-prefetch" href="https://changyan.sohu.com"/>
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Super洛伽">
+    <meta name="description" itemprop="description" content="我总是躲在梦与季节的深处，听花与黑夜唱尽梦魇，唱尽繁华，唱断所有记忆的来路。">
+    <meta name="keywords" content="">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="潮落夜江斜月里">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="使用Blendmap对WebGL地形进行多纹理处理 | 潮落夜江斜月里">
+    <meta property="og:image" content="/img/favicon.png" />
+    <meta property="og:description" content="我总是躲在梦与季节的深处，听花与黑夜唱尽梦魇，唱尽繁华，唱断所有记忆的来路。">
+    
+
+    
+        <meta property="article:published_time" content="9月 14, 2018" />
+        <meta property="article:modified_time" content="9月 14, 2018" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="使用Blendmap对WebGL地形进行多纹理处理 | 潮落夜江斜月里">
+    <meta name="twitter:description" content="我总是躲在梦与季节的深处，听花与黑夜唱尽梦魇，唱尽繁华，唱断所有记忆的来路。">
+    <meta name="twitter:image" content="/img/favicon.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="http://yoursite.com" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://yoursite.com/2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "潮落夜江斜月里",
+        "logo": "/img/favicon.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Super洛伽",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.png"
+        },
+        "description": "听花与黑夜唱尽梦魇"
+    },
+    "headline": "使用Blendmap对WebGL地形进行多纹理处理",
+    "url": "http://yoursite.com/2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/index.html",
+    "datePublished": "9月 14, 2018",
+    "dateModified": "9月 14, 2018",
+    "description": "我总是躲在梦与季节的深处，听花与黑夜唱尽梦魇，唱尽繁华，唱断所有记忆的来路。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://yoursite.com"
+    }
+}
+</script>
+
+
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+materialVersion+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(data&&data.indexOf(versionString)===-1){lsloader.removeLS(key)}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload){cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}code=code.split(versionString)[1];if(/\.js?.+$/.test(versionNumber)){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload)}};lsloader.requestResource=function(name,path,cssonload){var that=this;if(/\.js?.+$/.test(path)){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else if(/\.css?.+$/.test(path)){this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import CSS & jQuery -->
+    
+        <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?oCSEO3ST+aEypEwttTDI9g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        
+        
+            <style>
+    
+    
+    .footer-sns-twitter {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNiA3OGMtMjIuNCA1LjItNTUuOCA0MC4yLTYwLjYgNjMuNC0xLjQgNi40LTIgMTI5LjgtMS42IDM2Ny42LjYgMjk4LjYgMSAzNTguOCAzLjQgMzYzIDExIDIwLjIgMjEuNiAzMi40IDM3LjIgNDMgMTUgMTAuMiAxNy40IDExLjIgMzMgMTMgMTEuMiAxLjQgMTM2IDIgMzY1IDEuNiAzMTQtLjYgMzQ4LjYtMSAzNTUtMy44IDE1LjgtNy4yIDMzLjgtMjIgNDMuMi0zNS40IDUuMi03LjQgMTAuOC0xNi42IDEyLjYtMjAuNCAyLjgtNi40IDMuMi00MC44IDMuOC0zNTQgLjQtMjIzLS4yLTM1My40LTEuNC0zNjUtMi0xNy0yLjYtMTguNi0xMy0zNC04LjYtMTIuNi0xNC4yLTE4LjQtMjUuMi0yNS44LTcuOC01LjQtMTcuNC0xMS0yMS42LTEyLjQtNi0yLjItNzIuOC0yLjYtMzY1LjQtMi42LTE5Ni44LjItMzYxIC44LTM2NC40IDEuOHptNTMyLjggMjA1YzEwIDQgMjMgMTAuOCAyOC44IDE1LjIgMTIuNiA5LjIgMTYuNiAxMC42IDI5LjQgOS40IDYuNi0uNiAxMy0zLjIgMjAuNC04LjIgMTEuMi03LjYgMTkuNC05LjIgMjMuNi01IDMuNiAzLjYgMi44IDktMi44IDE4LjYtNy4yIDEyLjQtNiAxOC44IDQuMiAyNC4yIDQuNCAyLjIgOC4yIDUuNiA4LjYgNy40IDEgNC44LTEyLjYgMjQuMi0yMiAzMS44LTExLjggOS4yLTE3LjIgMjIuNi0xOS42IDQ3LjgtNC44IDUwLjQtNy44IDY2LjYtMTYuNCA4NS40LTMgNy03IDE3LjgtOC44IDI0LTEuOCA2LjQtNSAxNC42LTcuNCAxOC40LTIuMiAzLjgtNy40IDEzLTExLjQgMjAuNC0xNy4yIDMwLjgtNDMuNCA2MS40LTcxLjQgODMuOC0yNS42IDIwLjQtNDYgMzMuMi02NC4yIDQwLjItOC40IDMuMi0xOCA3LjYtMjEuNCA5LjYtNy40IDQuNi0yMi40IDguNi01Ny4yIDE1LTYyLjIgMTEuNi03OS4yIDExLjQtMTM1LjYtMS0zMi40LTctMzguNi05LTUyLTE2LjgtMjEuNC0xMi42LTI0LjItMTQuOC0yNC4yLTE5LjQgMC02LjIgMTAuMi05LjIgMzUtMTAuNCAyMi40LTEgMjguNi0yLjYgNTctMTQuMiAyMy44LTkuOCAyOS40LTEyLjggMzAuNC0xNi44IDIuMi04LjItMy0xMy4yLTI2LjgtMjUuNC0yNS44LTEzLjItMzIuMi0xOC40LTQzLjgtMzUuOC05LTEzLjYtMTAtMjEuMi0zLjYtMzMuNiA1LjQtMTAuOCAzLjYtMTUtMTEuOC0yNS40LTktNi0xNC0xMS42LTIwLjgtMjIuNi0yMy40LTM3LjgtMjUtNTAuOC03LjItNTkuOCA0LjgtMi40IDkuNC01LjQgMTAuMi02LjYgMi44LTQuMi0uNC0xNS42LTguNC0yOS0xMS42LTE5LjYtMTMuMi0yNS44LTEzLjItNTUuMiAwLTI4LjggMi42LTM3LjggMTItNDAuMiA5LTIuMiAxNC44IDEgMzUuNiAyMC4yIDI0LjggMjIuOCA0My42IDM2LjYgNjIuOCA0NS44IDggMy44IDE3LjggOS4yIDIyIDEyIDQuMiAyLjggMTQuOCA3IDIzLjQgOS4yIDguNiAyLjIgMjQuMiA2LjggMzQuOCAxMC4yIDEzLjQgNC40IDIzLjYgNi40IDMzIDYuNiAxMi44LjIgMTQuMi0uMiAxOC42LTUuNCA0LTQuOCA0LjgtNy44IDQuOC0xOS4yIDAtMTQuNCA1LjYtMzkuNiAxMS4yLTUwLjYgNC4yLTguNCAyOS4yLTM0LjIgMzkuOC00MS40IDcuOC01LjQgMzUuNi0xNiA1Mi0yMCAxNC4yLTMuNiAzMi42LTEuMiA1Mi40IDYuOHoiLz48L3N2Zz4=);
+    }
+    
+    
+    
+    
+    
+    
+    .footer-sns-github {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNCA3OGMtNi40IDEuNC0yNi40IDE0LjItMzYgMjIuOC04IDcuMi0yMiAyOS44LTI0LjQgMzkuMi0xLjYgNi40LTIgMTEzLjItMS42IDM2OCAuNiAyOTkuNCAxIDM1OS44IDMuNCAzNjQgMTEgMjAuMiAyMS42IDMyLjQgMzcuMiA0MyAxNS42IDEwLjYgMTcuMiAxMS4yIDM0LjIgMTMuMiAxMC42IDEuMiA2My40IDEuNiAxMjcuNiAxLjRsMTA5LjYtLjYgNi02LjggNi4yLTYuOC0xLjItMjUuMmMtLjgtMTUuOC0uMi0zMy40IDEuNC00Ny4yIDMtMjUuNCAxLjQtMzYuMi02LTQzLjItNS00LjYtNi4yLTQuOC0zMC42LTQuMi0yNy42LjgtMjQgMS42LTY4LjgtMTYtOC42LTMuNC0yMi42LTE4LTI4LjQtMjkuOC0xMS40LTIyLjgtMjctNDUtMzkuMi01NS42LTE0LTEyLjItMTkuOC0yMC44LTE5LjgtMjguNiAwLTExLjYgMTMuNi0xMi42IDMzLjItMi40IDE2LjYgOC44IDIwLjggMTIuNCA0MC44IDM2LjIgMjQuMiAyOC42IDMxIDMzLjYgNTQgMzkuNiAxNS4yIDQgNDIuMiAzIDUxLjQtMS44IDktNC42IDE4LTE1LjIgMjQuNC0yOS4yIDExLjQtMjQuMiA3LjQtMzEuMi0yMC42LTM2LjgtOS44LTItMjkuMi04LTQzLjQtMTMuNC00MC40LTE1LjgtNjQuNi0zNy40LTg1LjQtNzYuMi0xMS42LTIxLjgtMTUuNC0zMy0xOC4yLTUzLjYtNC4yLTMyLjItNC44LTYwLjItMS40LTg0IDMuNC0yMy44IDYuOC0zMi44IDIwLjItNTQgNC02IDguOC0xNS42IDExLTIxLjQgMy44LTEwIDMuOC0xMS42IDEtMzAtNS4yLTM0LjItMy4yLTUyLjQgNy42LTcwLjIgNy4yLTEyLjIgMTUtMTcuMiAyNC4yLTE1LjggMTIuOCAyLjIgNTIgMTcuNCA2Ni44IDI2LjIgMjYgMTUgMjkgMTUuNCA4Mi40IDcuMiAyNC42LTMuOCAzMy44LTQuMiA2MC0zLjIgMTcgLjYgNDEuNCAzIDU0IDUuMiAzOC40IDYuNiA0OS42IDUuMiA3My0xMCA2LjYtNC4yIDE3LjQtOS40IDI0LTExLjYgNi42LTIuMiAxNi01LjggMjEtOC4yIDEzLTYgMjgtNS42IDM1LjYuOCAxMi40IDEwLjQgMTguNiA0MS40IDE0LjQgNzEuNi00LjQgMzAuNi0zIDM5LjQgOC40IDUzLjggMy40IDQuNCAxMS4yIDE5LjIgMTcuNCAzMy4yTDc3NSA0NDN2NzhsLTEwIDI4Yy0xNS4yIDQzLjItMzYuOCA3My4yLTY2LjIgOTIuOC0xMy40IDguOC01NyAyNS40LTc2LjggMjktMjguMiA1LjItMzMuMiAxMi42LTIyIDMyLjIgMTEuMiAxOS40IDEyLjQgMzIuOCAxMS42IDEyOS42bC0uNiA4NS44IDUuNCA0LjZjMy42IDMgOS4yIDUuMiAxNiA2IDUuOC44IDYwLjIgMSAxMjAuNi42IDEwOC40LS42IDExMC4yLS42IDExOS01IDI0LTExLjYgNDAtMjcuNCA1MS42LTUwLjZsNS40LTExIC42LTM0N2MuNC0yMjMtLjItMzUzLjQtMS40LTM2NS0yLTE3LTIuNi0xOC42LTEzLTM0LTEwLjYtMTUuNC0yMi44LTI2LjItNDMuMi0zNy4yLTQuMi0yLjQtNjQuNi0yLjgtMzY2LTMuMi0xOTguNiAwLTM2NCAuNC0zNjcuNiAxLjR6Ii8+PC9zdmc+);
+    }
+    
+    
+    
+    
+    
+</style>
+
+        
+        <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-image: url(/img/bg.png);
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+
+        <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
+    
+    
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Analytics -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为什么要使用blendmap"><span class="post-toc-number">1.</span> <span class="post-toc-text">为什么要使用blendmap?</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下载我们的依赖包"><span class="post-toc-number">2.</span> <span class="post-toc-text">下载我们的依赖包</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现我们的blendmapped地形"><span class="post-toc-number">3.</span> <span class="post-toc-text">实现我们的blendmapped地形</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+    
+
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                使用Blendmap对WebGL地形进行多纹理处理
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/tx.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Super洛伽</strong>
+        <span>9月 14, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=使用Blendmap对WebGL地形进行多纹理处理&url=http://yoursite.com/2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=使用Blendmap对WebGL地形进行多纹理处理&url=http://yoursite.com/2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/index.html&via=Super洛伽" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=潮落夜江斜月里&title=使用Blendmap对WebGL地形进行多纹理处理&summary=我总是躲在梦与季节的深处，听花与黑夜唱尽梦魇，唱尽繁华，唱断所有记忆的来路。&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>翻译自： <a href="http://www.chinedufn.com/webgl-multitexture-blend-map-tutorial/" target="_blank" rel="noopener">http://www.chinedufn.com/webgl-multitexture-blend-map-tutorial/</a></p>
+<p>Multitexturing是指在渲染某物时使用多个纹理，因为往往有些效果是一张纹理所无法完成的，所以就需要Multitexturing来实现。</p>
+<p>在大多数情况下，一个blend map是一张由红，绿，蓝和黑组合成的图像，以编码使用四种不同的纹理。每个纹理对应于这四种颜色中的一种。</p>
+<p>你可以在任何图像编辑工具(如Photoshop)中创建blend map，但在本教程中，我们将使用一个自定义2d画布工具创建blend map，然后将其编码并嵌入到演示程序中。</p>
+<p>然后，我们将使用blend map在一个单独的3d画布上渲染多纹理WebGL地形。</p>
+<h2 id="为什么要使用blendmap"><a href="#为什么要使用blendmap" class="headerlink" title="为什么要使用blendmap?"></a>为什么要使用blendmap?</h2><p>使用blendmap给地形贴图的最大好处是，它可以轻松地在大地形上平铺多个小纹理。</p>
+<p>你可以使用这种技术来为你的地形添加路径，斑块或者其他细节。</p>
+<p>（示例在这里：<a href="http://www.chinedufn.com/webgl-multitexture-blend-map-tutorial/）" target="_blank" rel="noopener">http://www.chinedufn.com/webgl-multitexture-blend-map-tutorial/）</a></p>
+<p>让我们假设你想让你的地形上长满青苔，有几条石径穿过青苔。你想要让苔藓和石头的纹理都贴到瓦片上，你也想要控制它们在哪里出现。你会怎么做?</p>
+<p>一种方法是创建一个地形大小的纹理，同时使用苔藓和石头的纹理。但是如果你的地形是<code>10000 x 10000</code>像素宽呢?</p>
+<p>现在的硬件不支持<code>10,000×10,000</code>大小的纹理，所以你需要使用一个更小的纹理图像，然后拉伸它以适应<code>10,000×10,000</code>的地形。不过这样会导致一个低质量的拉伸纹理覆盖在你的地形上。</p>
+<p>或者，你可以对石头和苔藓的位置进行编码，让你的石头和苔藓纹理在你被编码的地形上的任何地方都有瓦片。为此，我们将使用第三种纹理，我们的blendmap。</p>
+<p>我们的blendmap编码了在我们的地形上的哪个地方应该为纹理可见。</p>
+<h2 id="下载我们的依赖包"><a href="#下载我们的依赖包" class="headerlink" title="下载我们的依赖包"></a>下载我们的依赖包</h2><p>创建一个目录来保存教程代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir blend-map-tutorial</span><br><span class="line">cd blend-map-tutorial</span><br><span class="line">touch tutorial.js</span><br></pre></td></tr></table></figure></p>
+<p>下载纹理图集，我们将使用它来为我们的WebGL地形贴上纹理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -OL https://github.com/chinedufn/\</span><br><span class="line">webgl-blend-map-tutorial/raw/master/terrain.jpg</span><br></pre></td></tr></table></figure></p>
+<p>我们将安装一个开发服务，以便在浏览器中查看教程，以及使用4x4矩阵数学库创建透视图矩阵。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install budo@10.0.3 gl-mat4@1.1.4</span><br></pre></td></tr></table></figure></p>
+<h2 id="实现我们的blendmapped地形"><a href="#实现我们的blendmapped地形" class="headerlink" title="实现我们的blendmapped地形"></a>实现我们的blendmapped地形</h2><p>打开<code>tutorial.js</code>, 首先创建我们要绘制的画布，并将其用作 blend map。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var blendCanvas = document.createElement(&apos;canvas&apos;)</span><br><span class="line">blendCanvas.width = 256</span><br><span class="line">blendCanvas.height = 256</span><br><span class="line">blendCanvas.style.width = &apos;256px&apos;</span><br><span class="line">blendCanvas.style.height = &apos;256px&apos;</span><br><span class="line">blendCanvas.style.border = &apos;solid 1px rgba(0, 0, 0, 0.1)&apos;</span><br></pre></td></tr></table></figure>
+<p>接下来，我们设置一个变量，它将在绘制和更改颜色时保持当前画笔颜色。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var brushColor = &apos;purple&apos;</span><br></pre></td></tr></table></figure></p>
+<p>接下来我们创建滑动控件，允许我们改变画笔的颜色和大小。拖动这些控件将影响在图像中显示的红色、绿色和蓝色的数量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">function createColorSlider () &#123;</span><br><span class="line">  var colorSlider = document.createElement(&apos;input&apos;)</span><br><span class="line">  colorSlider.type = &apos;range&apos;</span><br><span class="line">  colorSlider.min = 0</span><br><span class="line">  colorSlider.max = 255</span><br><span class="line">  colorSlider.step = 1</span><br><span class="line">  colorSlider.oninput = handleSliderChange</span><br><span class="line"></span><br><span class="line">  return colorSlider</span><br><span class="line">&#125;</span><br><span class="line">var redSlider = createColorSlider()</span><br><span class="line">var blueSlider = createColorSlider()</span><br><span class="line">var greenSlider = createColorSlider()</span><br><span class="line"></span><br><span class="line">function handleSliderChange () &#123;</span><br><span class="line">  brushColor = </span><br><span class="line">   `rgb($&#123;redSlider.value&#125;, $&#123;greenSlider.value&#125;, $&#123;blueSlider.value&#125;)`</span><br><span class="line">  setColorDisplays()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function addSliderLabel (label, colorSlider) &#123;</span><br><span class="line">  var sliderLabel = document.createElement(&apos;label&apos;)</span><br><span class="line">  sliderLabel.display = &apos;inline-block&apos;</span><br><span class="line">  sliderLabel.innerHTML = label</span><br><span class="line"></span><br><span class="line">  var sliderWrapper = document.createElement(&apos;div&apos;)</span><br><span class="line">  sliderWrapper.display = &apos;block&apos;</span><br><span class="line">  sliderWrapper.appendChild(sliderLabel)</span><br><span class="line">  sliderWrapper.appendChild(colorSlider)</span><br><span class="line"></span><br><span class="line">  return sliderWrapper</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var brushSizeSlider = document.createElement(&apos;input&apos;)</span><br><span class="line">brushSizeSlider.type = &apos;range&apos;</span><br><span class="line">brushSizeSlider.value = 20</span><br><span class="line">brushSizeSlider.min = 0</span><br><span class="line">brushSizeSlider.max = 40</span><br><span class="line">brushSizeSlider.step = 1</span><br><span class="line"></span><br><span class="line">var sliderContainer = document.createElement(&apos;div&apos;)</span><br><span class="line">sliderContainer.appendChild(addSliderLabel(&apos;R&apos;, redSlider))</span><br><span class="line">sliderContainer.appendChild(addSliderLabel(&apos;G&apos;, greenSlider))</span><br><span class="line">sliderContainer.appendChild(addSliderLabel(&apos;B&apos;, blueSlider))</span><br><span class="line">sliderContainer.appendChild(addSliderLabel(&apos;Brush Size&apos;, brushSizeSlider))</span><br></pre></td></tr></table></figure></p>
+<p>接下来，我们创建一个显示控件来显示我们当前选择的颜色。它由一个小的圆形div组成，它的背景设置为当前颜色，然后是一个span，显示当前颜色的rgb(x, y, z)组件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function setColorDisplays () &#123;</span><br><span class="line">  colorDisplay.innerHTML = </span><br><span class="line">    `rgb($&#123;redSlider.value&#125;, $&#123;greenSlider.value&#125;, $&#123;blueSlider.value&#125;)`</span><br><span class="line">  swatchDisplay.style.backgroundColor = brushColor</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var colorDisplay = document.createElement(&apos;span&apos;)</span><br><span class="line">var swatchDisplay = document.createElement(&apos;div&apos;)</span><br><span class="line">swatchDisplay.style.width = &apos;20px&apos;</span><br><span class="line">swatchDisplay.style.height = &apos;20px&apos;</span><br><span class="line">swatchDisplay.style.marginRight = &apos;5px&apos;</span><br><span class="line">swatchDisplay.style.borderRadius = &apos;50%&apos;</span><br><span class="line">setColorDisplays()</span><br><span class="line"></span><br><span class="line">var colorDisplayContainer = document.createElement(&apos;div&apos;)</span><br><span class="line">colorDisplayContainer.style.display = &apos;flex&apos;</span><br><span class="line">colorDisplayContainer.style.alignItems = &apos;center&apos;</span><br><span class="line">colorDisplayContainer.appendChild(swatchDisplay)</span><br><span class="line">colorDisplayContainer.appendChild(colorDisplay)</span><br></pre></td></tr></table></figure></p>
+<p>现在让我们创建按钮，让我们设置黑，红，绿，蓝为画笔颜色。这些按钮直接对应我们的四种材质——石头、熔岩、苔藓和水。</p>
+<p>我们还创建了undo按钮。当我们点击这个时，我们会回到之前的上一步。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">var buttonContainer = document.createElement(&apos;div&apos;)</span><br><span class="line">buttonContainer.style.display = &apos;flex&apos;</span><br><span class="line">buttonContainer.style.width = &apos;500px&apos;</span><br><span class="line">buttonContainer.style.flexWrap = &apos;wrap&apos;</span><br><span class="line"></span><br><span class="line">function createColorButton (color, label) &#123;</span><br><span class="line">  var colorButton = document.createElement(&apos;button&apos;)</span><br><span class="line"></span><br><span class="line">  colorButton.style.color = `rgb($&#123;color.join(&apos;,&apos;)&#125;)`</span><br><span class="line">  colorButton.style.fontSize = &apos;24px&apos;</span><br><span class="line">  colorButton.style.cursor = &apos;pointer&apos;</span><br><span class="line">  colorButton.style.marginTop = &apos;5px&apos;</span><br><span class="line">  colorButton.style.marginRight = &apos;5px&apos;</span><br><span class="line">  colorButton.innerHTML = label</span><br><span class="line">  colorButton.onclick = function () &#123;</span><br><span class="line">    brushColor = `rgb($&#123;color.join(&apos;,&apos;)&#125;)`</span><br><span class="line">    redSlider.value = color[0]</span><br><span class="line">    greenSlider.value = color[1]</span><br><span class="line">    blueSlider.value = color[2]</span><br><span class="line">    setColorDisplays()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  buttonContainer.appendChild(colorButton)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var undoButton = document.createElement(&apos;button&apos;)</span><br><span class="line">undoButton.style.cursor = &apos;pointer&apos;</span><br><span class="line">undoButton.style.marginRight = &apos;5px&apos;</span><br><span class="line">undoButton.innerHTML = &apos;Undo&apos;</span><br><span class="line">undoButton.onclick = undo</span><br><span class="line">buttonContainer.appendChild(undoButton)</span><br><span class="line"></span><br><span class="line">createColorButton([0, 0, 0], &apos;stone&apos;)</span><br><span class="line">createColorButton([255, 0, 0], &apos;lava&apos;)</span><br><span class="line">createColorButton([0, 255, 0], &apos;moss&apos;)</span><br><span class="line">createColorButton([0, 0, 255], &apos;water&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>现在我们已经创建了所有控件，我们将它们添加到页面中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var mountElem = document.querySelector(&apos;#webgl-blend-map-tutorial&apos;) </span><br><span class="line">|| document.body</span><br><span class="line">mountElem.appendChild(buttonContainer)</span><br><span class="line">mountElem.appendChild(sliderContainer)</span><br><span class="line">mountElem.appendChild(colorDisplayContainer)</span><br></pre></td></tr></table></figure></p>
+<p>接下来，我们将画布和WebGL地形画布添加到DOM中。现在我们已经将所有的演示元素插入到页面中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var webGLCanvas = document.createElement(&apos;canvas&apos;)</span><br><span class="line">webGLCanvas.width = 512</span><br><span class="line">webGLCanvas.height = 512</span><br><span class="line">webGLCanvas.style.cursor = &apos;not-allowed&apos;</span><br><span class="line">mountElem.appendChild(webGLCanvas)</span><br><span class="line"></span><br><span class="line">var canvasContainer = document.createElement(&apos;div&apos;)</span><br><span class="line">canvasContainer.style.display = &apos;flex&apos;</span><br><span class="line">canvasContainer.appendChild(blendCanvas)</span><br><span class="line">canvasContainer.appendChild(webGLCanvas)</span><br><span class="line">mountElem.appendChild(canvasContainer)</span><br></pre></td></tr></table></figure></p>
+<p>为了在画布上作画，我们需要得到画布的2d上下文。我们的canvas的2d上下文保存了所有的状态和方法，这些状态和方法决定了在任何给定时间在画布上绘制什么内容。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var canvas2dContext = blendCanvas.getContext(&apos;2d&apos;)</span><br><span class="line">canvas2dContext.fillStyle = brushColor</span><br><span class="line">canvas2dContext.fillRect(</span><br><span class="line">  0, 0, canvas2dContext.canvas.width, canvas2dContext.canvas.height</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>现在我们创建允许我们绘制的控件。当我们单击并移动鼠标时，我们将向数组添加点。当我们绘制画布时，我们会绘制并连接这些点。</p>
+<p>我们还将跟踪<code>lastmousereleaseindexes</code>数组。每当我们释放鼠标或手指时，我们都会添加到这个数组中。然后，当我们按下撤销按钮时，我们将使用这个数组中的最后一个元素来知道当我们移除了画在画布上的点时，要返回多远。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var isPainting = false</span><br><span class="line"></span><br><span class="line">function startPainting (e) &#123;</span><br><span class="line">  isPainting = true</span><br><span class="line">  addPoint(</span><br><span class="line">      e.pageX - blendCanvas.offsetLeft,</span><br><span class="line">      e.pageY - blendCanvas.offsetTop,</span><br><span class="line">      false,</span><br><span class="line">      brushSizeSlider.value</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function movePaintbrush (e) &#123;</span><br><span class="line">  if (isPainting) &#123;</span><br><span class="line">    addPoint(</span><br><span class="line">      (e.pageX || e.changedTouches[0].pageX) - blendCanvas.offsetLeft,</span><br><span class="line">      (e.pageY || e.changedTouches[0].pageY) - blendCanvas.offsetTop,</span><br><span class="line">      true,</span><br><span class="line">      brushSizeSlider.value</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var lastMouseReleaseIndices = []</span><br><span class="line">function stopPainting () &#123;</span><br><span class="line">  lastMouseReleaseIndices.push(allPoints.length - 1)</span><br><span class="line">  isPainting = false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在，我们已经设置了绘画函数，我们在画布中添加事件监听器，以便在单击或触摸画布时启动和停止绘画。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">blendCanvas.addEventListener(&apos;mousedown&apos;, startPainting)</span><br><span class="line">blendCanvas.addEventListener(&apos;touchstart&apos;, startPainting)</span><br><span class="line">blendCanvas.addEventListener(&apos;mousemove&apos;, movePaintbrush)</span><br><span class="line">blendCanvas.addEventListener(&apos;touchmove&apos;, movePaintbrush)</span><br><span class="line">blendCanvas.addEventListener(&apos;mouseup&apos;, stopPainting)</span><br><span class="line">blendCanvas.addEventListener(&apos;touchend&apos;, stopPainting)</span><br></pre></td></tr></table></figure></p>
+<p>在这里，我们创建向画布添加新点的函数。如果connect为真，我们将在新点和之前点之间画一条线。如果拖动鼠标或手指，就会发生这种情况。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var allPoints = []</span><br><span class="line">function addPoint (x, y, connectWithPrevious, size) &#123;</span><br><span class="line">  allPoints.push(&#123;</span><br><span class="line">    x: x,</span><br><span class="line">    y: y,</span><br><span class="line">    connect: connectWithPrevious,</span><br><span class="line">    color: brushColor,</span><br><span class="line">    size: size</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里我们设置了撤消函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function undo () &#123;</span><br><span class="line">  if (lastMouseReleaseIndices.length &gt; 1) &#123;</span><br><span class="line">    allPoints = allPoints.slice(</span><br><span class="line">      0,</span><br><span class="line">      lastMouseReleaseIndices[lastMouseReleaseIndices.length - 2]</span><br><span class="line">    )</span><br><span class="line">  &#125; else if (lastMouseReleaseIndices.length === 1) &#123;</span><br><span class="line">    allPoints = []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  lastMouseReleaseIndices.pop()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在这里，我们重绘我们的绘制画布。我们将在每个请求动画帧中这样做。每当我们重新绘制画布时，我们都会设置blendmap图像来读取我们在画布上绘制的内容。因为WebGL地形使用的是blendmap图像，所以当我们在2d画布上绘制时，它会实时重载WebGL地形。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function redrawPaintCanvas () &#123;</span><br><span class="line">  canvas2dContext.fillRect(</span><br><span class="line">    0, 0, canvas2dContext.canvas.width, canvas2dContext.canvas.height</span><br><span class="line">  )</span><br><span class="line">  </span><br><span class="line">  canvas2dContext.lineJoin = &apos;round&apos;</span><br><span class="line"></span><br><span class="line">  for (var i = 0; i &lt; allPoints.length; i++) &#123;</span><br><span class="line">    canvas2dContext.beginPath()</span><br><span class="line">    if (allPoints[i].connect &amp;&amp; allPoints[i - 1]) &#123;</span><br><span class="line">      canvas2dContext.moveTo(allPoints[i - 1].x, allPoints[i - 1].y)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      canvas2dContext.moveTo(allPoints[i].x - 1, allPoints[i].y)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    canvas2dContext.lineTo(allPoints[i].x, allPoints[i].y)</span><br><span class="line">    canvas2dContext.closePath()</span><br><span class="line">    canvas2dContext.strokeStyle = allPoints[i].color</span><br><span class="line">    canvas2dContext.lineWidth = allPoints[i].size</span><br><span class="line">    canvas2dContext.stroke()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  blendmapImage.src = blendCanvas.toDataURL()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们完成了我们的2d画布，现在我们可以移动到我们的WebGL地形。我们从获取WebGL上下文开始。</p>
+<p>与我们的2d上下文类似，我们的WebGL上下文是用来控制底层OpenGL实现在绘制WebGL画布时将使用的所有状态的句柄。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var gl = webGLCanvas.getContext(&apos;webgl&apos;)</span><br><span class="line">gl.clearColor(0.0, 0.0, 0.0, 1.0)</span><br><span class="line">gl.viewport(0, 0, 512, 512)</span><br></pre></td></tr></table></figure></p>
+<p>我们创建三个数组来保存顶点位置、顶点uvs(纹理坐标)和顶点索引(另一些要绘制的顶点)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var positions = []</span><br><span class="line">var indices = []</span><br><span class="line">var uvs = []</span><br></pre></td></tr></table></figure></p>
+<p>这里是我们创建地形的地方。我们做了一个<code>64x64</code>的格子。网格的左下角为<code>[0,0]</code>uv坐标，网格的右上角为<code>[1,1]</code>的uv坐标。就是说把我们的blend map拉伸到我们的地形上。</p>
+<p>在应用纹理图集来平铺纹理时，我们最终将这些坐标乘以6。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">var distanceAway = -85</span><br><span class="line"></span><br><span class="line">var tileNum = 0</span><br><span class="line"></span><br><span class="line">var numRowsColumns = 64</span><br><span class="line">for (var y = 0; y &lt; numRowsColumns; y++) &#123;</span><br><span class="line">  for (var x = 0; x &lt; numRowsColumns; x++) &#123;</span><br><span class="line">    positions = positions.concat([</span><br><span class="line">      x, y, distanceAway,</span><br><span class="line">      1 + x, y, distanceAway,</span><br><span class="line">      1 + x, 1 + y, distanceAway,</span><br><span class="line">      x, 1 + y, distanceAway</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line">    uvs = uvs.concat([</span><br><span class="line">      x / numRowsColumns, y / numRowsColumns,</span><br><span class="line">      (x + 1) / numRowsColumns, y / numRowsColumns,</span><br><span class="line">      (x + 1) / numRowsColumns, (y + 1) / numRowsColumns,</span><br><span class="line">      x / numRowsColumns, (y + 1) / numRowsColumns</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line">    indices = indices.concat([</span><br><span class="line">      0, 1, 2, 0, 2, 3</span><br><span class="line">    ].map(function (num) &#123;</span><br><span class="line">      return num + (4 * tileNum)</span><br><span class="line">    &#125;))</span><br><span class="line"></span><br><span class="line">    tileNum++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在我们创建我们的blend map纹理和地形纹理buffer，并把我们的blend map和地形图像添加到上面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">var blendmapTexture = gl.createTexture()</span><br><span class="line">var blendmapImage = new window.Image()</span><br><span class="line">blendmapImage.src = blendCanvas.toDataURL()</span><br><span class="line">blendmapImage.onload = function () &#123;</span><br><span class="line">  handleLoadedTexture(blendmapTexture, blendmapImage)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var terrainTexture = gl.createTexture()</span><br><span class="line">var terrainImage = new window.Image()</span><br><span class="line">terrainImage.crossOrigin = &apos;anonymous&apos;</span><br><span class="line">terrainImage.onload = function () &#123;</span><br><span class="line">  handleLoadedTexture(terrainTexture, terrainImage)</span><br><span class="line">&#125;</span><br><span class="line">terrainImage.src = &apos;/terrain.jpg&apos;</span><br><span class="line"></span><br><span class="line">var bothImagesLoaded = false</span><br><span class="line">function handleLoadedTexture (texture, image) &#123;</span><br><span class="line">  gl.bindTexture(gl.TEXTURE_2D, texture)</span><br><span class="line">  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true)</span><br><span class="line">  gl.texImage2D(</span><br><span class="line">    gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image</span><br><span class="line">  )</span><br><span class="line">  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST)</span><br><span class="line">  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST)</span><br><span class="line">  gl.bindTexture(gl.TEXTURE_2D, null)</span><br><span class="line"></span><br><span class="line">  if (bothImagesLoaded) &#123;</span><br><span class="line">    setupWebGLState()</span><br><span class="line">  &#125;</span><br><span class="line">  bothImagesLoaded = true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>让我们创建顶点着色器。它负责定位所有的顶点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var vertexShader = `</span><br><span class="line">attribute vec3 aVertexPosition;</span><br><span class="line">attribute vec2 aTextureCoord;</span><br><span class="line"></span><br><span class="line">varying vec2 vTextureCoord;</span><br><span class="line"></span><br><span class="line">uniform mat4 uMVMatrix;</span><br><span class="line">uniform mat4 uPMatrix;</span><br><span class="line"></span><br><span class="line">void main (void) &#123;</span><br><span class="line">  gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);</span><br><span class="line">  vTextureCoord = aTextureCoord;</span><br><span class="line">&#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+<p>片元着色器是blend mapping的核心所在。我们根据片元的位置来采样blend map。然后得到这一点的颜色。</p>
+<p>我们计算从blend map中取样的颜色中有多少是黑色，红色，绿色和蓝色。这四种权重被用来决定我们的石头，熔岩，苔藓和水的纹理有多少被添加到我们的最终颜色。</p>
+<p>当从我们的石头，熔岩，苔藓和水纹理上进行采样时，我们会限制那些有相关纹理的纹理图集的纹理坐标，然后将这些纹理坐标乘以6。这使我们的纹理瓦片扩大6倍。</p>
+<p>这就意味着，如果你用一种颜色，比如黑色来绘制整个blend map，你会看到石头纹理重复了6次。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">var fragmentShader = `</span><br><span class="line">precision mediump float;</span><br><span class="line"></span><br><span class="line">varying vec2 vTextureCoord;</span><br><span class="line"></span><br><span class="line">uniform sampler2D uBlendmapSampler;</span><br><span class="line">uniform sampler2D uTerrainSampler;</span><br><span class="line"></span><br><span class="line">void main (void) &#123;</span><br><span class="line">   vec4 blendColor = </span><br><span class="line">     texture2D(uBlendmapSampler, vec2(vTextureCoord.s, vTextureCoord.t));</span><br><span class="line"></span><br><span class="line">   float numRepeats = 6.0;</span><br><span class="line">   vec4 rockColor = texture2D(uTerrainSampler, </span><br><span class="line">     vec2(</span><br><span class="line">       mod(vTextureCoord.s * 0.5 * numRepeats, 0.5) + 0.5, </span><br><span class="line">       mod(vTextureCoord.t * 0.5 * numRepeats, 0.5)</span><br><span class="line">   ));</span><br><span class="line">   vec4 lavaColor = texture2D(uTerrainSampler, </span><br><span class="line">     vec2(</span><br><span class="line">       mod(vTextureCoord.s * 0.5 * numRepeats, 0.5) + 0.5, </span><br><span class="line">       mod(vTextureCoord.t * 0.5 * numRepeats, 0.5) - 0.5</span><br><span class="line">   ));</span><br><span class="line">   vec4 mossColor = texture2D(uTerrainSampler, </span><br><span class="line">     vec2(</span><br><span class="line">       mod(vTextureCoord.s * 0.5 * numRepeats, 0.5), </span><br><span class="line">       mod(vTextureCoord.t * 0.5 * numRepeats, 0.5) - 0.5</span><br><span class="line">   ));</span><br><span class="line">   vec4 waterColor = texture2D(uTerrainSampler, </span><br><span class="line">   vec2(</span><br><span class="line">     mod(vTextureCoord.s * 0.5 * numRepeats, 0.5), </span><br><span class="line">     mod(vTextureCoord.t * 0.5 * numRepeats, 0.5)</span><br><span class="line">   ));</span><br><span class="line"></span><br><span class="line">   float blackWeight = 1.0 - blendColor.x - blendColor.y - blendColor.z;</span><br><span class="line"></span><br><span class="line">   gl_FragColor = rockColor * blackWeight +</span><br><span class="line">   lavaColor * blendColor.x +</span><br><span class="line">   mossColor * blendColor.y +</span><br><span class="line">   waterColor * blendColor.z;</span><br><span class="line">&#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+<p>现在我们有了顶点和片元着色器，我们将它们编译成一个着色器程序。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var vert = gl.createShader(gl.VERTEX_SHADER)</span><br><span class="line">var frag = gl.createShader(gl.FRAGMENT_SHADER)</span><br><span class="line">gl.shaderSource(vert, vertexShader)</span><br><span class="line">gl.compileShader(vert)</span><br><span class="line">gl.shaderSource(frag, fragmentShader)</span><br><span class="line">gl.compileShader(frag)</span><br><span class="line">var shaderProgram = gl.createProgram()</span><br><span class="line">gl.attachShader(shaderProgram, vert)</span><br><span class="line">gl.attachShader(shaderProgram, frag)</span><br><span class="line">gl.linkProgram(shaderProgram)</span><br><span class="line">gl.useProgram(shaderProgram)</span><br></pre></td></tr></table></figure></p>
+<p>我们的WebGL上下文是一个状态机。为了绘制到页面，我们必须在开始绘制之前设置所有需要的相关状态。在这里，我们将绘制地形所需的所有数据推送到GPU上。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">function setupWebGLState () &#123;</span><br><span class="line">  var vertexPositionBuffer = gl.createBuffer()</span><br><span class="line">  var vertexIndexBuffer = gl.createBuffer()</span><br><span class="line">  var vertexUVsBuffer = gl.createBuffer()</span><br><span class="line"></span><br><span class="line">  gl.bindBuffer(gl.ARRAY_BUFFER, vertexPositionBuffer)</span><br><span class="line">  gl.bufferData(</span><br><span class="line">    gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW</span><br><span class="line">  )</span><br><span class="line">  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, vertexIndexBuffer)</span><br><span class="line">  gl.bufferData(</span><br><span class="line">    gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  gl.bindBuffer(gl.ARRAY_BUFFER, vertexUVsBuffer)</span><br><span class="line">  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(uvs), gl.STATIC_DRAW)</span><br><span class="line"></span><br><span class="line">  var vertexPositionAttribute = gl.getAttribLocation(</span><br><span class="line">    shaderProgram, &apos;aVertexPosition&apos;</span><br><span class="line">  )</span><br><span class="line">  gl.bindBuffer(gl.ARRAY_BUFFER, vertexPositionBuffer)</span><br><span class="line">  gl.enableVertexAttribArray(vertexPositionAttribute)</span><br><span class="line">  gl.vertexAttribPointer(</span><br><span class="line">    vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  var textureCoordAttribute = gl.getAttribLocation(</span><br><span class="line">    shaderProgram, &apos;aTextureCoord&apos;</span><br><span class="line">  )</span><br><span class="line">  gl.bindBuffer(gl.ARRAY_BUFFER, vertexUVsBuffer)</span><br><span class="line">  gl.enableVertexAttribArray(textureCoordAttribute)</span><br><span class="line">  gl.vertexAttribPointer(</span><br><span class="line">    textureCoordAttribute, 2, gl.FLOAT, false, 0, 0</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  var terrainSamplerUniform = gl.getUniformLocation(</span><br><span class="line">    shaderProgram, &apos;uTerrainSampler&apos;</span><br><span class="line">  )</span><br><span class="line">  gl.activeTexture(gl.TEXTURE1)</span><br><span class="line">  gl.bindTexture(gl.TEXTURE_2D, terrainTexture)</span><br><span class="line">  gl.uniform1i(terrainSamplerUniform, 1)</span><br><span class="line"></span><br><span class="line">  var blendmapSamplerUniform = gl.getUniformLocation(</span><br><span class="line">    shaderProgram, &apos;uBlendmapSampler&apos;</span><br><span class="line">  )</span><br><span class="line">  gl.activeTexture(gl.TEXTURE0)</span><br><span class="line">  gl.bindTexture(gl.TEXTURE_2D, blendmapTexture)</span><br><span class="line">  gl.uniform1i(blendmapSamplerUniform, 0)</span><br><span class="line"></span><br><span class="line">  var mvMatrixUniform = gl.getUniformLocation(shaderProgram, &apos;uMVMatrix&apos;)</span><br><span class="line">  gl.uniformMatrix4fv(</span><br><span class="line">    mvMatrixUniform, </span><br><span class="line">    false, </span><br><span class="line">    [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -32, -32, 0, 1]</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  var pMatrixUniform = gl.getUniformLocation(shaderProgram, &apos;uPMatrix&apos;)</span><br><span class="line">  gl.uniformMatrix4fv(pMatrixUniform, </span><br><span class="line">    false, </span><br><span class="line">    require(&apos;gl-mat4/perspective&apos;)(</span><br><span class="line">      [], Math.PI / 4, 400 / 400, 0.1, 1000</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, vertexIndexBuffer)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后，我们启动一个request animation frame loop，来重新绘制我们的绘制画布和我们的WebGL地形画布。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function drawBothCanvases () &#123;</span><br><span class="line">  redrawPaintCanvas()</span><br><span class="line"></span><br><span class="line">  if (bothImagesLoaded) &#123;</span><br><span class="line">    gl.clear(gl.COLOR_BUFFER_BIT)</span><br><span class="line">    gl.drawElements(</span><br><span class="line">      gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  window.requestAnimationFrame(drawBothCanvases)</span><br><span class="line">&#125;</span><br><span class="line">drawBothCanvases()</span><br></pre></td></tr></table></figure></p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cyto6Grxh';
+var conf = 'cbf094674ac763f46f6f8b4f502b2371';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/08/15/WebGL教程-不带扩展的方向光Shadow Map/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/tx.jpg" alt="Super洛伽's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        bingqixuan@vip.qq.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/08/">八月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/06/">六月 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/bingqixuan" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/bingqixuan" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>潮落夜江斜月里
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+
+    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
+    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+
+
+
+    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==")</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 畅言公共 js 代码 start -->
+<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cyto6Grxh">
+</script>
+<!-- 畅言公共 js 代码 end -->
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Window Load-->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Bing Background -->
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
