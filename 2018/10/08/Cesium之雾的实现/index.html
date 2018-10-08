@@ -12,7 +12,7 @@
     
     <title>
         
-            归档: 2018/8 | 
+            Cesium之雾的实现 | 
         
         溪衍之路
     </title>
@@ -67,15 +67,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2018/8 | 溪衍之路">
+    <meta property="og:title" content="Cesium之雾的实现 | 溪衍之路">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="一路向前，不见归路。">
     
 
     
+        <meta property="article:published_time" content="10月 08, 2018" />
+        <meta property="article:modified_time" content="10月 08, 2018" />
+    
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="归档: 2018/8 | 溪衍之路">
+    <meta name="twitter:title" content="Cesium之雾的实现 | 溪衍之路">
     <meta name="twitter:description" content="一路向前，不见归路。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -83,13 +86,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/archives/2018/08/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2018/10/08/Cesium之雾的实现/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "溪衍之路",
+        "logo": "/img/favicon.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "溪衍",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.png"
+        },
+        "description": "主要聚焦于GIS领域、可视化、大前端"
+    },
+    "headline": "Cesium之雾的实现",
+    "url": "http://yoursite.com/2018/10/08/Cesium之雾的实现/index.html",
+    "datePublished": "10月 08, 2018",
+    "dateModified": "10月 08, 2018",
+    "description": "一路向前，不见归路。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://yoursite.com"
+    }
+}
+</script>
 
 
     
@@ -268,102 +301,252 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Fog类的注意点"><span class="post-toc-number">1.</span> <span class="post-toc-text">Fog类的注意点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何影响地形瓦片的加载"><span class="post-toc-number">2.</span> <span class="post-toc-text">如何影响地形瓦片的加载</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/08/15/WebGL教程-不带扩展的方向光Shadow Map/">WebGL教程:不带扩展的方向光Shadow Map</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            翻译自: 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/08/15/WebGL教程-不带扩展的方向光Shadow Map/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>8月 15, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/08/15/WebGL教程-不带扩展的方向光Shadow Map/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                Cesium之雾的实现
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/tx.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>溪衍</strong>
+        <span>10月 08, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Cesium之雾的实现&url=http://yoursite.com/2018/10/08/Cesium之雾的实现/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Cesium之雾的实现&url=http://yoursite.com/2018/10/08/Cesium之雾的实现/index.html&via=溪衍" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/08/Cesium之雾的实现/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/08/Cesium之雾的实现/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=溪衍之路&title=Cesium之雾的实现&summary=一路向前，不见归路。&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2018/10/08/Cesium之雾的实现/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>实际上是将大气层和距离相机较远的几何图形进行混合的现象，通过渲染更少的几何体和分配更少的地形请求，可以提升性能。</p>
+<h2 id="Fog类的注意点"><a href="#Fog类的注意点" class="headerlink" title="Fog类的注意点"></a>Fog类的注意点</h2><p>在Fog类中，有一个<code>density</code>属性，它是一个确定雾浓度的标量，越接近1.0，雾越浓，进而地形块越容易被剔除。</p>
+<p>fog里面定义了<code>heightsTable</code>和<code>densityTable</code>，这两个表是通过对某些视图的雾浓度进行抽样，并找出在哪一点上进行瓦片剔除能够影响地平面视图而得出的。在场景更新的时候，根据相机高度，从<code>heightsTable</code>中找出对应的索引，进而从<code>densityTable</code>表中的浓度区间进行插值，得到的此高度下的浓度值。</p>
+<h2 id="如何影响地形瓦片的加载"><a href="#如何影响地形瓦片的加载" class="headerlink" title="如何影响地形瓦片的加载"></a>如何影响地形瓦片的加载</h2><p>首先了解一下QuadtreePrimitive中的<code>maximumScreenSpaceError</code>变量，它代表着最大屏幕空间错误(SSE，以像素为单位，默认为2)。较高的<code>maximumScreenSpaceError</code>将会渲染更少的贴图，进而可以提高性能，而较低的值将提高视觉质量。</p>
+<p>在cesium选择瓦片的时候，会计算每个瓦片的SSE，若小于maximumScreenSpaceError，就会进行渲染。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (screenSpaceError(primitive, frameState, tile) &lt; primitive.maximumScreenSpaceError) &#123;</span><br><span class="line">    <span class="comment">// 该瓦片符合SSE要求，所以渲染它。</span></span><br><span class="line">    <span class="keyword">if</span> (tile.needsLoading) &#123;</span><br><span class="line">        <span class="comment">// 以中等优先级加载符合SSE的瓦片。</span></span><br><span class="line">        primitive._tileLoadQueueMedium.push(tile);</span><br><span class="line">    &#125;</span><br><span class="line">    addTileToRenderList(primitive, tile);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>而在计算瓦片的SSE的时候，会检查fog是否开启，若开启则会进行如下计算：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CesiumMath.fog = <span class="function"><span class="keyword">function</span>(<span class="params">distanceToCamera, density</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> scalar = distanceToCamera * density;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span> - <span class="built_in">Math</span>.exp(-(scalar * scalar));</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (frameState.fog.enabled) &#123;</span><br><span class="line">    error = error - CesiumMath.fog(distance, frameState.fog.density) * frameState.fog.sse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样在开启fog后，error值就会比之前减小。当density越大时候，从fog公式中可以看出，得出的值越大，那么最终计算出的SSE就会越小，这就是为什么开启fog之后，地形瓦片请求次数减少的原因。</p>
+
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="2018/10/08/Cesium之雾的实现/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cyto6Grxh';
+var conf = 'cbf094674ac763f46f6f8b4f502b2371';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/09/28/Cesium性能调优之利用ModelInstanceCollection加载大量模型/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
