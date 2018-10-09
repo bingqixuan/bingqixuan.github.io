@@ -74,7 +74,7 @@
 
     
         <meta property="article:published_time" content="10月 08, 2018" />
-        <meta property="article:modified_time" content="10月 08, 2018" />
+        <meta property="article:modified_time" content="10月 09, 2018" />
     
 
     <!-- The Twitter Card protocol -->
@@ -115,7 +115,7 @@
     "headline": "Cesium之雾的实现",
     "url": "http://yoursite.com/2018/10/08/Cesium之雾的实现/index.html",
     "datePublished": "10月 08, 2018",
-    "dateModified": "10月 08, 2018",
+    "dateModified": "10月 09, 2018",
     "description": "一路向前，不见归路。",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -482,8 +482,19 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>实际上是将大气层和距离相机较远的几何图形进行混合的现象，通过渲染更少的几何体和分配更少的地形请求，可以提升性能。</p>
-<h2 id="Fog类的注意点"><a href="#Fog类的注意点" class="headerlink" title="Fog类的注意点"></a>Fog类的注意点</h2><p>在Fog类中，有一个<code>density</code>属性，它是一个确定雾浓度的标量，越接近1.0，雾越浓，进而地形块越容易被剔除。</p>
+        <p>雾是一种让远处几何渐隐的图形技术。早期的游戏引入了雾来隐藏在远处渲染的几何图形。即使在不再需要它之后，游戏仍然支持fog，因为它增加了场景的真实性，减少了draw call的数量，因为完全在fog中的几何体可以被剔除。</p>
+<p>在Cesium中，雾是大气颜色和地平线上地形的混合。部分处于雾中的地形瓦片会增加其屏幕空间误差（SSE），这样可以渲染低分辨率的地形。完全在雾中的瓦片将被完全剔除，甚至不被请求。</p>
+<p>这些优化将地平线视图中渲染的瓦片和从服务器请求的瓦片的数量都减少了35%。</p>
+<p>这是一个高3600米、俯仰角-15度的山景：</p>
+<div><br><img src="http://static.zybuluo.com/bingqixuan/lgjr5xnce52zrly5ry9m7l5d/image_1cpbdeh78in29810ua1n8s55nm.png" width="260" height="200" alt="a"><br><img src="https://cesium.com/blog/images/2015/11-12/mt-enabled.jpg" width="260" height="200" alt="a"><br><img src="https://cesium.com/blog/images/2015/11-12/mt-diff.jpg" width="260" height="200" alt="a"><br></div>
+
+<div><br><img src="https://cesium.com/blog/images/2015/11-12/mt-disabled-tiles.jpg" width="260" height="200" alt="a"><br><img src="https://cesium.com/blog/images/2015/11-12/mt-enabled-tiles.jpg" width="260" height="200" alt="a"><br><img src="https://cesium.com/blog/images/2015/11-12/mt-diff-tiles.jpg" width="260" height="200" alt="a"><br></div><br><table><br>    <tr><br>        <th>关闭雾</th><br>        <th>开启雾</th><br>    </tr><br>    <tr><br>        <td>渲染瓦片： 327</td><br>        <td>渲染瓦片： 228</td><br>    </tr><br>        <tr><br>        <td>请求瓦片： 510</td><br>        <td>请求瓦片： 322</td><br>    </tr><br>        <tr><br>        <td>FPS：  115</td><br>        <td>FPS：  155</td><br>    </tr><br></table><br><br>在第一行的第三列显示使用雾时的视觉差异。对于许多应用程序，用户并不关注远处的地形，所以这种差异在最坏的情况下是不明显的，在最好的情况下是更有视觉吸引力的。<br><br>在第二行的第三列显示了由于雾而被剔除的远处瓷砖的可视化。可以看出，其中许多瓦片根本不可见。<br><br>这是在490米的高度和俯仰角在0度的俯视图：<br><br><div><br><img src="http://static.zybuluo.com/bingqixuan/d9akwjlr9e7wlrhz22vtcg4y/image_1cpbmlcmc8m6h1t2e71c27scv1a.png" width="260" height="200" alt="a"><br><img src="http://static.zybuluo.com/bingqixuan/oh3uoleoebqnqkkydymyt6as/image_1cpbmn6i81a5c151objm1af81h7527.png" width="260" height="200" alt="a"><br><img src="http://static.zybuluo.com/bingqixuan/67uhekdwm6c0jqd77nvlj481/image_1cpbmo7uc1egmshgouhrt6u6a2k.png" width="260" height="200" alt="a"><br></div>
+
+<div><br><img src="http://static.zybuluo.com/bingqixuan/raqj3uz90g0jtfzwa1ox5lwo/image_1cpbmp30a1klb15u515891acv11ah31.png" width="260" height="200" alt="a"><br><img src="http://static.zybuluo.com/bingqixuan/lvz5ra3jfb5pexolywrrfc19/image_1cpbmpnmuvjanea1asi17n1mql3e.png" width="260" height="200" alt="a"><br><img src="http://static.zybuluo.com/bingqixuan/e5xhw5ufy1cyinnt21mxpawi/image_1cpbmq9gk1v4a12h0npp1r7brsq3r.png" width="260" height="200" alt="a"><br></div>
+
+<table><br>    <tr><br>        <th>关闭雾</th><br>        <th>开启雾</th><br>    </tr><br>    <tr><br>        <td>渲染瓦片： 401</td><br>        <td>渲染瓦片： 284</td><br>    </tr><br>        <tr><br>        <td>请求瓦片： 530</td><br>        <td>请求瓦片： 302</td><br>    </tr><br>        <tr><br>        <td>FPS：  118</td><br>        <td>FPS：  150</td><br>    </tr><br></table>
+
+<h2 id="Fog类的注意点"><a href="#Fog类的注意点" class="headerlink" title="Fog类的注意点"></a>Fog类的注意点</h2><p>对于那些能让相机更接近地面并能看到地平线的应用，雾可以通过两种特性来调节:浓度（density）和屏幕误差系数（screenSpaceErrorFactor）。<code>density</code>是<code>[0.0,1.0]</code>范围内的一个标量，以指数方式改变雾的起始和结束距离。<code>screenSpaceErrorFactor</code>线性地增加了地形的屏幕误差，因为与相机的距离增加，部分被雾遮挡。</p>
 <p>fog里面定义了<code>heightsTable</code>和<code>densityTable</code>，这两个表是通过对某些视图的雾浓度进行抽样，并找出在哪一点上进行瓦片剔除能够影响地平面视图而得出的。在场景更新的时候，根据相机高度，从<code>heightsTable</code>中找出对应的索引，进而从<code>densityTable</code>表中的浓度区间进行插值，得到的此高度下的浓度值。</p>
 <h2 id="如何影响地形瓦片的加载"><a href="#如何影响地形瓦片的加载" class="headerlink" title="如何影响地形瓦片的加载"></a>如何影响地形瓦片的加载</h2><p>首先了解一下QuadtreePrimitive中的<code>maximumScreenSpaceError</code>变量，它代表着最大屏幕空间错误(SSE，以像素为单位，默认为2)。较高的<code>maximumScreenSpaceError</code>将会渲染更少的贴图，进而可以提高性能，而较低的值将提高视觉质量。</p>
 <p>在cesium选择瓦片的时候，会计算每个瓦片的SSE，若小于maximumScreenSpaceError，就会进行渲染。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (screenSpaceError(primitive, frameState, tile) &lt; primitive.maximumScreenSpaceError) &#123;</span><br><span class="line">    <span class="comment">// 该瓦片符合SSE要求，所以渲染它。</span></span><br><span class="line">    <span class="keyword">if</span> (tile.needsLoading) &#123;</span><br><span class="line">        <span class="comment">// 以中等优先级加载符合SSE的瓦片。</span></span><br><span class="line">        primitive._tileLoadQueueMedium.push(tile);</span><br><span class="line">    &#125;</span><br><span class="line">    addTileToRenderList(primitive, tile);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
