@@ -12,7 +12,7 @@
     
     <title>
         
-            归档: 2018/10 | 
+            MapboxGL内核源码解析之热力图 | 
         
         溪衍之路
     </title>
@@ -67,15 +67,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2018/10 | 溪衍之路">
+    <meta property="og:title" content="MapboxGL内核源码解析之热力图 | 溪衍之路">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="一路向前，不见归路。">
     
 
     
+        <meta property="article:published_time" content="10月 10, 2018" />
+        <meta property="article:modified_time" content="10月 10, 2018" />
+    
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="归档: 2018/10 | 溪衍之路">
+    <meta name="twitter:title" content="MapboxGL内核源码解析之热力图 | 溪衍之路">
     <meta name="twitter:description" content="一路向前，不见归路。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -83,13 +86,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/archives/2018/10/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2018/10/10/MapboxGL内核源码解析之热力图/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "溪衍之路",
+        "logo": "/img/favicon.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "溪衍",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.png"
+        },
+        "description": "主要聚焦于GIS领域、可视化、大前端"
+    },
+    "headline": "MapboxGL内核源码解析之热力图",
+    "url": "http://yoursite.com/2018/10/10/MapboxGL内核源码解析之热力图/index.html",
+    "datePublished": "10月 10, 2018",
+    "dateModified": "10月 10, 2018",
+    "description": "一路向前，不见归路。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://yoursite.com"
+    }
+}
+</script>
 
 
     
@@ -268,167 +301,277 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#heatmap-radius"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">heatmap-radius:</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#heatmap-color"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">heatmap-color</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#热力图是如何在引擎下工作的"><span class="post-toc-number">3.</span> <span class="post-toc-text">热力图是如何在引擎下工作的</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/10/10/MapboxGL内核源码解析之热力图/">MapboxGL内核源码解析之热力图</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            介绍Mapboxg...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/10/10/MapboxGL内核源码解析之热力图/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>10月 10, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/10/10/MapboxGL内核源码解析之热力图/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/10/08/Cesium之雾的实现/">Cesium之雾的实现</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            雾是一种让远处几何渐隐的图形技术。早期的游戏引入了雾来隐藏在远处渲染的几何图形。即使在不再需要它之后，游戏仍然支持fog，因为它增加了场景的真实性，...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/10/08/Cesium之雾的实现/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>10月 08, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/10/08/Cesium之雾的实现/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                MapboxGL内核源码解析之热力图
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/tx.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>溪衍</strong>
+        <span>10月 10, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=MapboxGL内核源码解析之热力图&url=http://yoursite.com/2018/10/10/MapboxGL内核源码解析之热力图/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=MapboxGL内核源码解析之热力图&url=http://yoursite.com/2018/10/10/MapboxGL内核源码解析之热力图/index.html&via=溪衍" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/10/MapboxGL内核源码解析之热力图/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/10/MapboxGL内核源码解析之热力图/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=溪衍之路&title=MapboxGL内核源码解析之热力图&summary=一路向前，不见归路。&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2018/10/10/MapboxGL内核源码解析之热力图/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Mapboxgl是在0.41之后的版本加入热力图这个功能的。</p>
+<p>热力图是一种数据可视化，其中一系列颜色表示特定区域内点的密度。热力图可以帮助我们看到数据的“形状”，并突出显示许多点聚集在一起的集中区域。MapboxGL中的动态热力图层在平移和缩放的同时，都能够保持在60fps下平滑渲染。它速度快，可以处理大量数据(特别是与聚合结合使用时)。下图是热力图40万点的样子:</p>
+<p><a href="https://player.vimeo.com/video/222186846?referrer=https%3A%2F%2Fblog.mapbox.com%2Fmedia%2Feb3c9b44bfb8ebe0b36baaacf139e320%3FpostId%3D71355ada9e6c" target="_blank" rel="noopener">点此观看视频</a></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>你可以在你的样式中添加一个带有“heatmap”类型的图层:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">map.addSource(<span class="string">'earthquakes'</span>, &#123;</span><br><span class="line">    type: <span class="string">'geojson'</span>,</span><br><span class="line">    data: <span class="string">'earthquakes.geojson'</span></span><br><span class="line">&#125;);</span><br><span class="line">map.addLayer(&#123;</span><br><span class="line">    id: <span class="string">'earthquakes'</span>,</span><br><span class="line">    source: <span class="string">'earthquakes'</span>,</span><br><span class="line">    type: <span class="string">'heatmap'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>另外，mapboxgl提供了一系列属性来控制热力图的样式。以下是它的属性：</p>
+<h3 id="heatmap-radius"><a href="#heatmap-radius" class="headerlink" title="heatmap-radius:"></a>heatmap-radius:</h3><p>这个属性通过设置每个点的“影响半径”(相当于<a href="https://en.wikipedia.org/wiki/Kernel_density_estimation" target="_blank" rel="noopener">内核密度估计</a>中的带宽参数)来影响热图的详细程度。该值越高，外观就会更平滑。该属性也可以是一个缩放函数，允许在缩放时调整外观。<br><img src="http://static.zybuluo.com/bingqixuan/k1tz73o4dy2bezwd6wae0den/image_1cpe9ovtavld1rgvd4o1ca01vj59.png" alt="image_1cpe9ovtavld1rgvd4o1ca01vj59.png-430.2kB"><br><em>heatmap-radius: 5 (左边), 40 (右边)</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">map.addLayer(&#123;</span><br><span class="line">    ...</span><br><span class="line">    paint: &#123;</span><br><span class="line">        &apos;heatmap-radius&apos;: 40</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="heatmap-color"><a href="#heatmap-color" class="headerlink" title="heatmap-color"></a>heatmap-color</h3><p>这个样式属性控制了热力图设计中最重要的方面————地图上每个像素的“密度”值如何转换成颜色:</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/x6k9z9na8pv5koo68hai29bo/11.jpg" alt="11.jpg-473.2kB"><br><em>不同热力图颜色值的示例</em></p>
+<p>属性的值是一个函数，它映射从<code>0.0</code>到<code>1.0</code>到颜色的密度值。下面的例子将使最稀疏的区域变成蓝色，而在密度最大的地方逐渐从黄色过渡到红色。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;heatmap-color&quot;: &#123;</span><br><span class="line">    &quot;stops&quot;: [</span><br><span class="line">        [0.0, &quot;blue&quot;], </span><br><span class="line">        [0.5, &quot;yellow&quot;], </span><br><span class="line">        [1.0, &quot;red&quot;]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###heatmap-intensity</p>
+<p>此属性允许你在全局范围内调整热力图外观的强度。值越高，每个点对外观的影响就越大。这种关系是线性的。例如，将<code>heatmap-intensity</code>设置为<code>10.0</code>相当于重复绘制默认值<code>1.0</code>的数据集十次。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/dtm3kcf0dobqatbs8ajfrbl5/image_1cpeb2hf31uo61mqid5puel19g645.png" alt="image_1cpeb2hf31uo61mqid5puel19g645.png-293.6kB"><br><em>heatmap-intensity: 0.1(左)，1(右)</em></p>
+<p><code>heatmap-intensity</code>是调整热力图不同缩放水平下的外观的一个非常有用的参数————如果你让它保持不变，在较低层级上的热力图看起来会更厚重，因为点在视觉上会更靠近。</p>
+<p>###heatmap-weight</p>
+<p>此样式属性的工作原理与<code>heatmap-intensity</code>大致相同，不同的是它可以是数据驱动的，可以根据各个点的特性来调整它们的强度:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;heatmap-weight&quot;: &#123;</span><br><span class="line">    &quot;type&quot;: &quot;identity&quot;, </span><br><span class="line">    &quot;property&quot;: &quot;point_count&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在下面的例子中，<code>point_count</code>值为<code>100</code>的点看起来与100个<code>point_count</code>值为<code>1</code>的点相同。结合聚合的功能，会大大减少需要绘制的点的数量，从而提高了热力图的性能。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/ypfnyyb8n8remdptnuopzwv0/11.png" alt="11.png-86.6kB"></p>
+<p>###heatmap-opacity</p>
+<p>这个属性控制了热力图图层的不透明度。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/pf531sckikghgks1y1axkgdz/11.png" alt="11.png-401.8kB"><br><em>heatmap-opacity： 1.0(左)和0.5(右)</em></p>
+<p><code>heatmap-opacity</code>的一个有用的应用————当放大时查看细节时候会有淡出的效果:</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/ts36uhkep9k0c9lni5ki83on/11.gif" alt="11.gif-433.3kB"></p>
+<h2 id="热力图是如何在引擎下工作的"><a href="#热力图是如何在引擎下工作的" class="headerlink" title="热力图是如何在引擎下工作的"></a>热力图是如何在引擎下工作的</h2><p>用数学术语来说，Mapbox GL热力图是一个带有<a href="https://en.wikipedia.org/wiki/Gaussian_function" target="_blank" rel="noopener">高斯核</a>的二元(2D)<a href="https://en.wikipedia.org/wiki/Kernel_density_estimation" target="_blank" rel="noopener">核密度估计</a>。这意味着每个数据点周围都有一个“影响”区域(称为核)，影响的数值(我们称之为密度)随着你离点越来越远而减小。如果我们对屏幕上每个像素的所有点的密度值进行求和，我们就会得到一个组合的密度值，然后将其映射到一个热力图颜色。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/brolq7lt93zheaofivjbg1cz/11.png" alt="11.png-119.1kB"><br><em>单个内核(虚线红线)和联合内核密度估计(蓝线)。资料来源:维基百科</em></p>
+<p>未完待续。。。</p>
+<p>参考内容：</p>
+<ul>
+<li><a href="https://blog.mapbox.com/introducing-heatmaps-in-mapbox-gl-js-71355ada9e6c（前面基本都是翻译于此）" target="_blank" rel="noopener">https://blog.mapbox.com/introducing-heatmaps-in-mapbox-gl-js-71355ada9e6c（前面基本都是翻译于此）</a></li>
+</ul>
+
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="2018/10/10/MapboxGL内核源码解析之热力图/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cyto6Grxh';
+var conf = 'cbf094674ac763f46f6f8b4f502b2371';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/10/08/Cesium之雾的实现/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
