@@ -12,7 +12,7 @@
     
     <title>
         
-            归档 | 
+            MapboxGL开发之在交互式地图上可视化街道方向 | 
         
         溪衍之路
     </title>
@@ -67,15 +67,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档 | 溪衍之路">
+    <meta property="og:title" content="MapboxGL开发之在交互式地图上可视化街道方向 | 溪衍之路">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="一路向前，不见归路。">
     
 
     
+        <meta property="article:published_time" content="10月 11, 2018" />
+        <meta property="article:modified_time" content="10月 11, 2018" />
+    
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="归档 | 溪衍之路">
+    <meta name="twitter:title" content="MapboxGL开发之在交互式地图上可视化街道方向 | 溪衍之路">
     <meta name="twitter:description" content="一路向前，不见归路。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -83,13 +86,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/archives/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2018/10/11/MapboxGL开发之在交互式地图上可视化街道方向/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "溪衍之路",
+        "logo": "/img/favicon.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "溪衍",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.png"
+        },
+        "description": "主要聚焦于GIS领域、可视化、大前端"
+    },
+    "headline": "MapboxGL开发之在交互式地图上可视化街道方向",
+    "url": "http://yoursite.com/2018/10/11/MapboxGL开发之在交互式地图上可视化街道方向/index.html",
+    "datePublished": "10月 11, 2018",
+    "dateModified": "10月 11, 2018",
+    "description": "一路向前，不见归路。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://yoursite.com"
+    }
+}
+</script>
 
 
     
@@ -268,623 +301,264 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#我是如何做的"><span class="post-toc-number">1.</span> <span class="post-toc-text">我是如何做的</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/10/11/MapboxGL开发之在交互式地图上可视化街道方向/">MapboxGL开发之在交互式地图上可视化街道方向</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            翻译自：
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/10/11/MapboxGL开发之在交互式地图上可视化街道方向/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>10月 11, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/10/11/MapboxGL开发之在交互式地图上可视化街道方向/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/10/10/MapboxGL内核源码解析之热力图/">MapboxGL内核源码解析之热力图</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            介绍Mapboxg...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/10/10/MapboxGL内核源码解析之热力图/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>10月 10, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/10/10/MapboxGL内核源码解析之热力图/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/10/08/Cesium之雾的实现/">Cesium之雾的实现</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            雾是一种让远处几何渐隐的图形技术。早期的游戏引入了雾来隐藏在远处渲染的几何图形。即使在不再需要它之后，游戏仍然支持fog，因为它增加了场景的真实性，...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/10/08/Cesium之雾的实现/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>10月 08, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/10/08/Cesium之雾的实现/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/09/28/Cesium性能调优之利用ModelInstanceCollection加载大量模型/">Cesium性能调优之利用ModelInstanceCollection加载大量模型</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            在加载多模型时，除了转化成3DTiles，还可以利用cesium自带的ModelInstanceCollection来进行...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/09/28/Cesium性能调优之利用ModelInstanceCollection加载大量模型/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>9月 28, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/09/28/Cesium性能调优之利用ModelInstanceCollection加载大量模型/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/">使用Blendmap对WebGL地形进行多纹理处理</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            翻译自： 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>9月 14, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/08/15/WebGL教程-不带扩展的方向光Shadow Map/">WebGL教程:不带扩展的方向光Shadow Map</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            翻译自: 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/08/15/WebGL教程-不带扩展的方向光Shadow Map/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>8月 15, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/08/15/WebGL教程-不带扩展的方向光Shadow Map/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/06/23/混合多视锥的对数深度缓冲/">混合多视锥的对数深度缓冲</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            cesium的渲染引擎致力于高精度渲染，当渲染行星级别比例尺的时候，用米级别的分辨率就会出现深度冲突和抖动的现象。z-fighting（深度冲突）是...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/06/23/混合多视锥的对数深度缓冲/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>6月 23, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/06/23/混合多视锥的对数深度缓冲/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/06/07/解释齐次坐标和投影几何/">解释齐次坐标和投影几何</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            翻译自：
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/06/07/解释齐次坐标和投影几何/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>6月 07, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/06/07/解释齐次坐标和投影几何/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/12/27/hello-world/">开开开开开始</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            摒弃之前的CSDN。自搭小窝，走自己的style。先郑重的来一句： Hello World!
-
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/12/27/hello-world/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>12月 27, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2017/12/27/hello-world/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                MapboxGL开发之在交互式地图上可视化街道方向
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/tx.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>溪衍</strong>
+        <span>10月 11, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=MapboxGL开发之在交互式地图上可视化街道方向&url=http://yoursite.com/2018/10/11/MapboxGL开发之在交互式地图上可视化街道方向/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=MapboxGL开发之在交互式地图上可视化街道方向&url=http://yoursite.com/2018/10/11/MapboxGL开发之在交互式地图上可视化街道方向/index.html&via=溪衍" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/11/MapboxGL开发之在交互式地图上可视化街道方向/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/11/MapboxGL开发之在交互式地图上可视化街道方向/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=溪衍之路&title=MapboxGL开发之在交互式地图上可视化街道方向&summary=一路向前，不见归路。&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2018/10/11/MapboxGL开发之在交互式地图上可视化街道方向/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>翻译自：<a href="https://blog.mapbox.com/visualizing-street-orientations-on-an-interactive-map-1eefa6002afc" target="_blank" rel="noopener">Visualizing street orientations on an interactive map</a>，作者：Vladimir Agafonkin</p>
+<p><a href="https://mourner.github.io/road-orientation-map/#18.76/41.1149542/-74.0442453/156.2/30" target="_blank" rel="noopener">演示地址</a></p>
+<p>城市的外观和感觉可能非常不同，这取决于它们是如何规划和建造的，当你在地图上从上面探索它们时，这一点尤其明显。一些城市严格按照网格排列，另一些城市似乎没有任何结构，在某些情况下，只有当你更仔细地观察一个城市时，模式才会出现，每个社区都有自己独特的风格。我们能想象出这些模式吗?</p>
+<p><a href="http://vizual-statistix.tumblr.com/post/80468941142/unlike-like-emperor-kuzco-i-was-actually-born" target="_blank" rel="noopener">Seth Kadish</a>和<a href="http://geoffboeing.com/2018/07/comparing-city-street-orientations/" target="_blank" rel="noopener">Geoff Boeing</a>展示了一个很棒的方法。他们将360°分成一组方位范围,计算有多少公路段属于哪个范围，然后生成一张极柱状图,给了我们一个对于每个特定城市的街道模式深刻的印象:</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/njolv4mhii6h4tyr3p3rns89/11.png" alt="11.png-360.7kB"></p>
+<p><img src="http://static.zybuluo.com/bingqixuan/gzmn043wppx0amk10d6wmv1j/11.png" alt="11.png-495kB"></p>
+<p>当我看到这个的时候，我立刻就被迷住了————这是一种多么巧妙的方式来观察一个城市是如何建造的!但我想探索更多。对于我的城市基辅，这样一张地图会是什么样子?或者是我最喜欢但鲜为人知的一些地方?同一城市的不同邻接地方会如何比较?或者，从更大的范围来看，欧洲的公路网与美国的公路网相比如何?</p>
+<p>为每个感兴趣的地方提取和处理道路数据来生成极坐标图表似乎是一项繁重的工作。我可以在交互式地图上做吗?事实证明，这是Mapbox矢量瓦片的一个完美用例————因为地图数据在客户端上，我们可以在世界上任何地方立即分析和可视化它。</p>
+<h2 id="我是如何做的"><a href="#我是如何做的" class="headerlink" title="我是如何做的"></a>我是如何做的</h2><p>整个应用程序大约有80行代码。在初始化地图之后，我们将它设置为每次移动时都更新可视化:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">map.on(&apos;load&apos;, function () &#123;</span><br><span class="line">    updateOrientations();</span><br><span class="line">    map.on(&apos;moveend&apos;, updateOrientations);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在更新过程中，我们可以通过一行代码获取屏幕上的所有道路，以GeoJSON格式获取结果，便于处理:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var features = map.queryRenderedFeatures(&#123;layers: [&apos;road&apos;]&#125;);</span><br></pre></td></tr></table></figure>
+<p>为了确保我们只看到我们实际看到的路段，而不包括部分离开视图的道路，我们使用一个名为<a href="https://github.com/mapbox/lineclip" target="_blank" rel="noopener">lineclip</a>的小型库将每个道路特征剪切到当前的边界框内:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var clippedLines = [];</span><br><span class="line">for (var j = 0; j &lt; lines.length; j++) &#123;</span><br><span class="line">  clippedLines.push.apply(clippedLines, lineclip(lines[j], bbox));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在我们看来，如果每个路段有成千上万个方向和长度，那么计算每个路段的方向和长度就会很昂贵。因此，我们使用<a href="https://github.com/mapbox/cheap-ruler" target="_blank" rel="noopener">cheap-ruler</a>，这是一个非常快的测地线计算库，像这样:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var ruler = cheapRuler(map.getCenter().lat);</span><br><span class="line">...</span><br><span class="line">for (var i = 0; i &lt; line.length - 1; i++) &#123;</span><br><span class="line">  var bearing = ruler.bearing(line[i], line[i + 1]);</span><br><span class="line">  var distance = ruler.distance(line[i], line[i + 1]);</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<p>对于每一条路段,我们计算出每个“bin”属于的方向(我们有64个bin,覆盖了360°范围)，并且累积每个bin的路段长度,同时计算每个双向道路两次(两个方向):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var k0 = Math.round((bearing + 360) * numBins / 360) % numBins;</span><br><span class="line">var k1 = Math.round((bearing + 180) * numBins / 360) % numBins;</span><br><span class="line">bins[k0] += distance;</span><br><span class="line">if (isTwoWay) bins[k1] += distance;</span><br></pre></td></tr></table></figure>
+<p>最后，为了得到图表中所有方向上的漂亮、统一的彩虹颜色，我们使用了我的同事Charlie Loyd推广的<a href="https://beta.observablehq.com/@mbostock/sinebow" target="_blank" rel="noopener">sinebow函数</a>。</p>
+
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="2018/10/11/MapboxGL开发之在交互式地图上可视化街道方向/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cyto6Grxh';
+var conf = 'cbf094674ac763f46f6f8b4f502b2371';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/10/10/MapboxGL内核源码解析之热力图/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
