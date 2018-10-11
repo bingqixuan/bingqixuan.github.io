@@ -74,7 +74,7 @@
 
     
         <meta property="article:published_time" content="10月 10, 2018" />
-        <meta property="article:modified_time" content="10月 10, 2018" />
+        <meta property="article:modified_time" content="10月 11, 2018" />
     
 
     <!-- The Twitter Card protocol -->
@@ -115,7 +115,7 @@
     "headline": "MapboxGL内核源码解析之热力图",
     "url": "http://yoursite.com/2018/10/10/MapboxGL内核源码解析之热力图/index.html",
     "datePublished": "10月 10, 2018",
-    "dateModified": "10月 10, 2018",
+    "dateModified": "10月 11, 2018",
     "description": "一路向前，不见归路。",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -506,7 +506,11 @@
 <p><img src="http://static.zybuluo.com/bingqixuan/ts36uhkep9k0c9lni5ki83on/11.gif" alt="11.gif-433.3kB"></p>
 <h2 id="热力图是如何在引擎下工作的"><a href="#热力图是如何在引擎下工作的" class="headerlink" title="热力图是如何在引擎下工作的"></a>热力图是如何在引擎下工作的</h2><p>用数学术语来说，Mapbox GL热力图是一个带有<a href="https://en.wikipedia.org/wiki/Gaussian_function" target="_blank" rel="noopener">高斯核</a>的二元(2D)<a href="https://en.wikipedia.org/wiki/Kernel_density_estimation" target="_blank" rel="noopener">核密度估计</a>。这意味着每个数据点周围都有一个“影响”区域(称为核)，影响的数值(我们称之为密度)随着你离点越来越远而减小。如果我们对屏幕上每个像素的所有点的密度值进行求和，我们就会得到一个组合的密度值，然后将其映射到一个热力图颜色。</p>
 <p><img src="http://static.zybuluo.com/bingqixuan/brolq7lt93zheaofivjbg1cz/11.png" alt="11.png-119.1kB"><br><em>单个内核(虚线红线)和联合内核密度估计(蓝线)。资料来源:维基百科</em></p>
-<p>未完待续。。。</p>
+<p>要使用OpenGL实现这一点，对于每个数据点，我们将内核(它看起来像一个模糊的圆)绘制成带有可添加混合的屏幕外半浮动纹理(这样当内核重叠时，值就会被汇总在一起)，然后在单独的步骤中对这个灰度纹理着色。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/y4q3kjbtfpv3jvcgyhvwebn1/11.png" alt="11.png-60kB"><br><em>添加混合的两个高斯核</em></p>
+<p>理想情况下，我们需要为每个数据点分别计算每个屏幕像素的密度，因为这个值永远不会完全为零，即使离相应的点很远。但这样成本太高————即使是少量的点位也需要数十亿的操作。为了加快速度，我们将每个内核裁剪成一个正方形，这个正方形刚好能够容纳所有外部值都非常小(在某个阈值下我们任意选择<code>1 / 255 / 16</code>)。这个大小<a href="https://github.com/mapbox/mapbox-gl-js/blob/3eced30265619a2f4bfa91b615d58651e0326cd0/src/shaders/heatmap.vertex.glsl#L38" target="_blank" rel="noopener">取决于每个点的重量和强度</a>;较重的点需要更大的绘图区域。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/s9gjbnd5fk2m4egghrk92z9a/11.png" alt="11.png-42.2kB"></p>
+<p>另外，为了绘制密度，我们使用了一个缩小的纹理，它的边长比地图分辨率小4倍(这样每一点绘制的像素减少了16倍)，然后在着色步骤中使用线性插值将纹理放大回来。对于热力图，这在视觉上与完全分辨率渲染几乎没有区别，但却相当快。</p>
 <p>参考内容：</p>
 <ul>
 <li><a href="https://blog.mapbox.com/introducing-heatmaps-in-mapbox-gl-js-71355ada9e6c（前面基本都是翻译于此）" target="_blank" rel="noopener">https://blog.mapbox.com/introducing-heatmaps-in-mapbox-gl-js-71355ada9e6c（前面基本都是翻译于此）</a></li>
