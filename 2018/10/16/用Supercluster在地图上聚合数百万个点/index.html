@@ -12,7 +12,7 @@
     
     <title>
         
-            归档: 2018/6 | 
+            用Supercluster在地图上聚合数百万个点 | 
         
         溪衍之路
     </title>
@@ -67,15 +67,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2018/6 | 溪衍之路">
+    <meta property="og:title" content="用Supercluster在地图上聚合数百万个点 | 溪衍之路">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="一路向前，不见归路。">
     
 
     
+        <meta property="article:published_time" content="10月 16, 2018" />
+        <meta property="article:modified_time" content="10月 16, 2018" />
+    
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="归档: 2018/6 | 溪衍之路">
+    <meta name="twitter:title" content="用Supercluster在地图上聚合数百万个点 | 溪衍之路">
     <meta name="twitter:description" content="一路向前，不见归路。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -83,13 +86,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/archives/2018/06/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2018/10/16/用Supercluster在地图上聚合数百万个点/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "溪衍之路",
+        "logo": "/img/favicon.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "溪衍",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.png"
+        },
+        "description": "主要聚焦于GIS领域、可视化、大前端"
+    },
+    "headline": "用Supercluster在地图上聚合数百万个点",
+    "url": "http://yoursite.com/2018/10/16/用Supercluster在地图上聚合数百万个点/index.html",
+    "datePublished": "10月 16, 2018",
+    "dateModified": "10月 16, 2018",
+    "description": "一路向前，不见归路。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://yoursite.com"
+    }
+}
+</script>
 
 
     
@@ -268,167 +301,282 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分层贪心聚类（Hierarchical-greedy-clustering）"><span class="post-toc-number">1.</span> <span class="post-toc-text">分层贪心聚类（Hierarchical greedy clustering）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#索引点和群组"><span class="post-toc-number">2.</span> <span class="post-toc-text">索引点和群组</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#聚合性能"><span class="post-toc-number">3.</span> <span class="post-toc-text">聚合性能</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#库的使用"><span class="post-toc-number">4.</span> <span class="post-toc-text">库的使用</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/06/23/混合多视锥的对数深度缓冲/">混合多视锥的对数深度缓冲</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            cesium的渲染引擎致力于高精度渲染，当渲染行星级别比例尺的时候，用米级别的分辨率就会出现深度冲突和抖动的现象。z-fighting（深度冲突）是...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/06/23/混合多视锥的对数深度缓冲/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>6月 23, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/06/23/混合多视锥的对数深度缓冲/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/06/07/解释齐次坐标和投影几何/">解释齐次坐标和投影几何</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            翻译自：
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/06/07/解释齐次坐标和投影几何/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>6月 07, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/06/07/解释齐次坐标和投影几何/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                用Supercluster在地图上聚合数百万个点
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/tx.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>溪衍</strong>
+        <span>10月 16, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=用Supercluster在地图上聚合数百万个点&url=http://yoursite.com/2018/10/16/用Supercluster在地图上聚合数百万个点/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=用Supercluster在地图上聚合数百万个点&url=http://yoursite.com/2018/10/16/用Supercluster在地图上聚合数百万个点/index.html&via=溪衍" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/16/用Supercluster在地图上聚合数百万个点/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/16/用Supercluster在地图上聚合数百万个点/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=溪衍之路&title=用Supercluster在地图上聚合数百万个点&summary=一路向前，不见归路。&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2018/10/16/用Supercluster在地图上聚合数百万个点/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>翻译自<a href="https://blog.mapbox.com/clustering-millions-of-points-on-a-map-with-supercluster-272046ec5c97，作者" target="_blank" rel="noopener">https://blog.mapbox.com/clustering-millions-of-points-on-a-map-with-supercluster-272046ec5c97，作者</a> Vladimir Agafonkin</p>
+<p>MapboxGL JS中有个聚合的例子（<a href="https://www.mapbox.com/mapbox-gl-js/example/cluster/" target="_blank" rel="noopener">点击查看</a>，让我们看看它如何在浏览器中加载40MB的GeoJSON数据和400,000个点:</p>
+<p><a href="https://player.vimeo.com/video/161081039?byline=0&amp;portrait=0&amp;referrer=https%3A%2F%2Fblog.mapbox.com%2Fmedia%2F419941d165862ebaaed4d6b175808086%3FpostId%3D272046ec5c97&amp;title=0" target="_blank" rel="noopener">点击查看视频</a></p>
+<p>通过调整聚合的样式，我们还可以将其转换为热力图：</p>
+<p><a href="https://player.vimeo.com/video/161081444?byline=0&amp;portrait=0&amp;referrer=https%3A%2F%2Fblog.mapbox.com%2Fmedia%2F3098bdce7b67a04765af8651c82684b7%3FpostId%3D272046ec5c97&amp;title=0" target="_blank" rel="noopener">点击查看视频</a></p>
+<p>在加载数据几秒钟后，你可以以60fps的帧率流畅地浏览数据。为了实现这种性能，我构建了一个名为<a href="https://github.com/mapbox/supercluster" target="_blank" rel="noopener">Supercluster</a>的新的JavaScript聚合库。</p>
+<p>让我们来看看Supercluster是如何工作的。</p>
+<h2 id="分层贪心聚类（Hierarchical-greedy-clustering）"><a href="#分层贪心聚类（Hierarchical-greedy-clustering）" class="headerlink" title="分层贪心聚类（Hierarchical greedy clustering）"></a>分层贪心聚类（Hierarchical greedy clustering）</h2><p>一种简单而有效的方法，将点分组到群组中以实现特定的缩放称为<strong>贪心聚类</strong>。它是这样工作的:</p>
+<ol>
+<li>从数据集中的任意点开始。</li>
+<li>求出这个点周围一定半径内的所有点。</li>
+<li>与附近的点形成一个新的群组。</li>
+<li>选择一个不属于群组的新点，然后重复，直到我们访问了所有的点。</li>
+</ol>
+<p><img src="http://static.zybuluo.com/bingqixuan/u3p3b77yzre8ao50ybrlt4lm/11.gif" alt="11.gif-22.6kB"></p>
+<p>对于地图的每一个层级来说，这都是非常昂贵的——例如，如果缩放级别从0到18，我们将不得不对整个数据集进行19次处理，而在缩放级别较低时，聚合速度会变得太慢，因为每个群组需要容纳指数级增长的点。</p>
+<p>我们通过反复利用计算避免了这个问题。在对缩放级别18上的点进行聚合之后，我们可以将得到的群组(带有加权中心)分组到新的z17群组中。然后我们可以使用z17群组来形成z16群组，以此类推。由于每一步所需要处理的点的数量都呈指数级下降，我们可以快速地对所有缩放级别的点进行聚合。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/01okbs2px8kgn6w7wezoo9iq/11.png" alt="11.png-54.5kB"></p>
+<p>这种方法被称为<strong>分层贪心聚类（Hierarchical greedy clustering）</strong>，是由Dave Leaver用他的神奇的<a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank" rel="noopener">Leaflet.markercluster</a>插件传播开来的。</p>
+<p>与更复杂的聚合算法不同的是，它的速度足以处理浏览器中的数百万个点，而且它还足以用于交互式地图上的浏览点数据集。</p>
+<h2 id="索引点和群组"><a href="#索引点和群组" class="headerlink" title="索引点和群组"></a>索引点和群组</h2><p>在交互式地图中实现这种聚合方法有两个可能昂贵的操作:</p>
+<ol>
+<li>在一定的半径内找到所有的点。</li>
+<li>在当前屏幕上查找群组。</li>
+</ol>
+<p>进行半径查询的最简单方法是遍历所有点，然后保存那些离我们的查询点足够近的。</p>
+<p>但是，由于我们需要执行很多这样的查询——每个潜在的群组都有一个查询——这将会太慢。类似地，我们不希望遍历屏幕查询的所有点，这在每次拖放或缩放地图时都是必要的。</p>
+<p>为了高效地完成这两项工作，我们必须使用空间索引——一次性将点处理到一个特殊的数据结构中，然后同时使用它来执行任意数量的后续查询。</p>
+<p>空间索引是许多算法中不可缺少的组成部分，很多研究都是为了建立最快的JavaScript实现，比如<a href="https://github.com/mourner/rbush" target="_blank" rel="noopener">RBush</a>。</p>
+<p>对于特定缩放级别的每个聚合步骤都需要前面步骤中提及的索引点。但是在聚合过程之后，每个缩放层级都有一个索引可以让我们立即查询任何地图视图的聚合群组。</p>
+<h2 id="聚合性能"><a href="#聚合性能" class="headerlink" title="聚合性能"></a>聚合性能</h2><p>下面是我们在视频中看到的400000点的数据集的每个聚合步骤的时间细分:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">399601 points prepared in 123ms</span><br><span class="line">z16: indexed in 516ms clustered in 156ms 46805 clusters</span><br><span class="line">z15: indexed in 53.4ms clustered in 40.8ms 20310 clusters</span><br><span class="line">z14: indexed in 12.4ms clustered in 17.2ms 10632 clusters</span><br><span class="line">z13: indexed in 7.9ms clustered in 12.9ms 6578 clusters</span><br><span class="line">z12: indexed in 3.4ms clustered in 6.9ms 4514 clusters</span><br><span class="line">z11: indexed in 2.4ms clustered in 3.4ms 3252 clusters</span><br><span class="line">z10: indexed in 1.4ms clustered in 2.3ms 2329 clusters</span><br><span class="line"> z9: indexed in 1ms clustered in 1.5ms 1608 clusters</span><br><span class="line"> z8: indexed in 0.6ms clustered in 1.5ms 1083 clusters</span><br><span class="line"> z7: indexed in 0.4ms clustered in 0.7ms 721 clusters</span><br><span class="line"> z6: indexed in 0.2ms clustered in 0.4ms 421 clusters</span><br><span class="line"> z5: indexed in 0.1ms clustered in 0.2ms 202 clusters</span><br><span class="line"> z4: indexed in 0.1ms clustered in 0.1ms 82 clusters</span><br><span class="line"> z3: indexed in 0ms clustered in 0ms 34 clusters</span><br><span class="line"> z2: indexed in 0ms clustered in 0ms 14 clusters</span><br><span class="line"> z1: indexed in 0ms clustered in 0ms 7 clusters</span><br><span class="line"> z0: indexed in 0ms clustered in 0ms 3 clusters</span><br><span class="line">total time: 972ms</span><br></pre></td></tr></table></figure>
+<p>Supercluster处理此数据集的总时间不到1秒。因为处理发生在主线程之外(在Web Worker中)，它不会阻塞地图渲染。当数据聚合完成之后，任何屏幕查询都会立即发生(小于1ms)。</p>
+<h2 id="库的使用"><a href="#库的使用" class="headerlink" title="库的使用"></a>库的使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 聚合 GeoJSON 点集</span><br><span class="line">var index = supercluster(&#123;radius: 40, maxZoom: 16&#125;).load(geojson.features);</span><br><span class="line">// 通过给定一个包围盒和一个层级来获取获取 GeoJSON 聚合群组</span><br><span class="line">var clusters = index.getClusters([-180, -85, 180, 85], 2);</span><br><span class="line">// 获得与GeoJSON-VT格式相同的JSON矢量瓦片</span><br><span class="line">var tile = index.getTile(7, 523, 125);</span><br></pre></td></tr></table></figure>
+<p>因为Supercluster对于MapboxGL JS非常好用，所以我们将它作为一个独立的库发布，这样其他软件就可以利用它的快速算法。例如，这里有一个视频，它与Leaflet一起使用，以浏览浏览器中加载的600万个点(<a href="https://github.com/mapbox/supercluster/tree/master/demo" target="_blank" rel="noopener">源代码</a>):</p>
+<p><a href="https://player.vimeo.com/video/161093745?byline=0&amp;portrait=0&amp;referrer=https%3A%2F%2Fblog.mapbox.com%2Fmedia%2F06a06b3050a87aed76e78db370ba877c%3FpostId%3D272046ec5c97&amp;title=0" target="_blank" rel="noopener">点此查看视频</a></p>
+<p>你也可以用Node.js在服务端进行点聚合处理，然后用<a href="https://github.com/mapbox/vt-pbf" target="_blank" rel="noopener">vt-pbf模块</a>将生成的聚合群组转换为Mapbox矢量瓦片。</p>
+
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="2018/10/16/用Supercluster在地图上聚合数百万个点/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cyto6Grxh';
+var conf = 'cbf094674ac763f46f6f8b4f502b2371';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/10/16/WebGL风向图/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
