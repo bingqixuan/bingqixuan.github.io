@@ -12,7 +12,7 @@
     
     <title>
         
-            归档: 2018/9 | 
+            WebGL风向图 | 
         
         溪衍之路
     </title>
@@ -67,15 +67,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2018/9 | 溪衍之路">
+    <meta property="og:title" content="WebGL风向图 | 溪衍之路">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="一路向前，不见归路。">
     
 
     
+        <meta property="article:published_time" content="10月 16, 2018" />
+        <meta property="article:modified_time" content="10月 16, 2018" />
+    
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="归档: 2018/9 | 溪衍之路">
+    <meta name="twitter:title" content="WebGL风向图 | 溪衍之路">
     <meta name="twitter:description" content="一路向前，不见归路。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -83,13 +86,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/archives/2018/09/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2018/10/16/WebGL风向图/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "溪衍之路",
+        "logo": "/img/favicon.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "溪衍",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.png"
+        },
+        "description": "主要聚焦于GIS领域、可视化、大前端"
+    },
+    "headline": "WebGL风向图",
+    "url": "http://yoursite.com/2018/10/16/WebGL风向图/index.html",
+    "datePublished": "10月 16, 2018",
+    "dateModified": "10月 16, 2018",
+    "description": "一路向前，不见归路。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://yoursite.com"
+    }
+}
+</script>
 
 
     
@@ -268,167 +301,292 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#获取风向数据"><span class="post-toc-number">2.</span> <span class="post-toc-text">获取风向数据</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在GPU上移动粒子"><span class="post-toc-number">3.</span> <span class="post-toc-text">在GPU上移动粒子</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#绘制粒子"><span class="post-toc-number">4.</span> <span class="post-toc-text">绘制粒子</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#绘制粒子轨迹"><span class="post-toc-number">5.</span> <span class="post-toc-text">绘制粒子轨迹</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#风属性查找插值"><span class="post-toc-number">6.</span> <span class="post-toc-text">风属性查找插值</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在GPU上的伪随机生成器"><span class="post-toc-number">7.</span> <span class="post-toc-text">在GPU上的伪随机生成器</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/09/28/Cesium性能调优之利用ModelInstanceCollection加载大量模型/">Cesium性能调优之利用ModelInstanceCollection加载大量模型</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            在加载多模型时，除了转化成3DTiles，还可以利用cesium自带的ModelInstanceCollection来进行...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/09/28/Cesium性能调优之利用ModelInstanceCollection加载大量模型/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>9月 28, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/09/28/Cesium性能调优之利用ModelInstanceCollection加载大量模型/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/">使用Blendmap对WebGL地形进行多纹理处理</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            翻译自： 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>9月 14, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2018/09/14/使用Blendmap对WebGL地形进行多纹理处理/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                WebGL风向图
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/tx.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>溪衍</strong>
+        <span>10月 16, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=WebGL风向图&url=http://yoursite.com/2018/10/16/WebGL风向图/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=WebGL风向图&url=http://yoursite.com/2018/10/16/WebGL风向图/index.html&via=溪衍" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/16/WebGL风向图/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/16/WebGL风向图/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=溪衍之路&title=WebGL风向图&summary=一路向前，不见归路。&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2018/10/16/WebGL风向图/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>从原来的CSDN博客上搬迁过来。<br><span style="color:red">前面关于webgl的基本知识点就没翻译</span>,<a href="https://blog.mapbox.com/how-i-built-a-wind-map-with-webgl-b63022b5537f" target="_blank" rel="noopener">原文地址</a></p>
+<hr>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>制作风向图通常步骤</p>
+<ol>
+<li>在屏幕上生成一系列随机粒子位置并绘制粒子。</li>
+<li>对于每一个粒子，查询风数据以获得其当前位置的粒子速度，并相应地移动它。</li>
+<li>将一小部分粒子重置为一个随机的位置。这就确保了风从不会变成空的区域。</li>
+<li>淡出当前屏幕，并在顶部绘制新定位的粒子。</li>
+</ol>
+<p>这有后续的性能限制:</p>
+<ul>
+<li>风粒子的数量应该保持在低水平(例如地球使用&lt;5k)。</li>
+<li>每次更新数据或查看(例如2秒)，都有很大的延迟，因为数据处理开销很大，而且CPU方面也发生了变化。</li>
+</ul>
+<p>此外，将它作为一个交互式基于webgl的地图(如Mapbox)的一部分进行集成，您必须在每个框架上将画布元素的像素内容上载到GPU上，这将大大降低性能。</p>
+<h2 id="获取风向数据"><a href="#获取风向数据" class="headerlink" title="获取风向数据"></a>获取风向数据</h2><p>每隔6个小时，美国国家气象局就会以纬度/经度网格(包括风速)的形式，发布全球的气象数据，即GFS。它以一种特殊的二进制格式编码，称为GRIB，它可以用一组特殊的工具解析成人类可读的JSON。</p>
+<p>我编写了一些小脚本，下载并将风数据转换成一个简单的PNG图像，以RGB颜色为风速编码。在每个像素中，水平速度为红色，垂直速度为绿色。它看起来像这样:</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/enu54eyhlzh4tfsg6e07r743/image_1bmlue803126g1c0rudbefd1kqe5u.png" alt="image_1bmlue803126g1c0rudbefd1kqe5u.png-102.9kB"></p>
+<p>有更高分辨率的版本可以下载(2x和4x),但360×180网格足够low-zoom可视化。PNG压缩非常适合这种类型的数据，上面的图像通常大小约80KB。</p>
+<h2 id="在GPU上移动粒子"><a href="#在GPU上移动粒子" class="headerlink" title="在GPU上移动粒子"></a>在GPU上移动粒子</h2><p>现有的风可视化粒子状态存储在JavaScript数组中。我们如何在GPU方面存储和操纵这个状态？一个新的GL特性，叫做<a href="https://www.khronos.org/opengl/wiki/Compute_Shader" target="_blank" rel="noopener">计算着色器</a>(存在于OpenGL ES 3.1和WebGL 2.0规范)允许您在任意数据上运行shader代码(不需要任何呈现)。不幸的是，在浏览器和移动设备上对新规范的支持是很弱的，因此我们只剩下一个实用的选项：纹理。</p>
+<p>OpenGL不仅允许您绘制屏幕，而且还可以绘制纹理(通过一个称为framebuffer的概念)。因此，我们可以将粒子位置编码为RGBA颜色的图像，将其加载到GPU上，根据片段着色器中的风速计算新的位置，再将它们编码成RGBA颜色，并将其绘制成新的图像。</p>
+<p>为了存储足够精度的X和Y分量，我们分别将每个分量存储在两个字节中，分别为RG和BA，为每个分量提供了65536个不同的值。<br><img src="http://static.zybuluo.com/bingqixuan/yqq2w1b3qmc89x57uipswkas/image_1bmlkh94151ehu81kvap5p5ub1p.png" alt="image_1bmlkh94151ehu81kvap5p5ub1p.png-7.2kB"></p>
+<p>一个500 × 500的示例图像将要加载250,000个粒子，我们会用片段着色器移动每个粒子。所生成的图像将如下所示：<br><img src="http://static.zybuluo.com/bingqixuan/brndz93qzt2uvfo8xfxdqoaj/image_1bmlklbkn1grg329sp23jb14t626.png" alt="image_1bmlklbkn1grg329sp23jb14t626.png-250.1kB"></p>
+<p>下面的代码是从RGBA中如何解码位置，和在片段着色器中如何再编码成RGBA:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 查找粒子像素的颜色</span><br><span class="line">vec4 color = texture2D(u_particles, v_tex_pos);</span><br><span class="line"></span><br><span class="line">// 从像素RGBA颜色中解码粒子位置(x,y)</span><br><span class="line">vec2 pos = vec2(</span><br><span class="line">    color.r / 255.0 + color.b,</span><br><span class="line">    color.g / 255.0 + color.a);</span><br><span class="line">    </span><br><span class="line">... // 移动位置</span><br><span class="line"></span><br><span class="line">// 将位置编码回RGBA</span><br><span class="line">gl_FragColor = vec4(</span><br><span class="line">    fract(pos * 255.0),</span><br><span class="line">    floor(pos * 255.0) / 255.0);</span><br></pre></td></tr></table></figure></p>
+<p>在下一帧中，我们可以将这个新图像作为当前状态，将新状态绘制成另一个图像等等，将这两个帧交换。因此，在两个粒子态纹理的帮助下，我们可以将所有的风模拟逻辑移动到GPU上。</p>
+<p>这种方法非常快————之前在浏览器上每秒只更新5000个粒子60次，现在我们可以处理100万个。</p>
+<p>要记住的一件事是，在两极附近，与赤道上的粒子相比，粒子的运动速度要快得多，因为相同的经度度代表的距离要小得多。这可以考虑到以下的着色代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">float distortion = cos(radians(pos.y * 180.0 - 90.0));</span><br><span class="line">// 通过(velocity.x / distortion, velocity.y)来移动粒子</span><br></pre></td></tr></table></figure>
+<h2 id="绘制粒子"><a href="#绘制粒子" class="headerlink" title="绘制粒子"></a>绘制粒子</h2><p>正如我前面提到的，除了三角形之外，我们还可以绘制基本点——很少使用，但对于像这样的1像素粒子来说是完美的。</p>
+<p>为了绘制每一个粒子，我们只需在顶点着色器的粒子状态纹理上查找它的像素颜色来确定它的位置;然后通过从风的纹理中查找当前的速度来确定片元着色器中的粒子颜色；最后把它映射到一个漂亮的颜色渐变(我从 <a href="http://colorbrewer2.org/" target="_blank" rel="noopener">ColorBrewer2</a>中挑选了颜色)。在这一点上，它看起来是这样的:<br><img src="http://static.zybuluo.com/bingqixuan/l552khbm9ywpq5uivk1f9qtx/image_1bmlq8rihqerua9tnav2o17k62j.png" alt="image_1bmlq8rihqerua9tnav2o17k62j.png-317.3kB"></p>
+<p>但单靠粒子运动很难获得风的方向。我们需要添加粒子轨迹。</p>
+<h2 id="绘制粒子轨迹"><a href="#绘制粒子轨迹" class="headerlink" title="绘制粒子轨迹"></a>绘制粒子轨迹</h2><p>我尝试使用的第一个方法是使用<code>preserveDrawingBuffer</code>这个WebGL选项，它使屏幕状态在帧之间保持，这样我们就可以在每一帧移动的时候，在每一帧上画出粒子。然而，这个WebGL特性是一个巨大的性能冲击，许多WebGL文章建议不要使用它。</p>
+<p>相反，类似于我们如何处理粒子状态纹理，我们可以将粒子画成纹理(这将会被绘制到屏幕上)，然后在下一帧上使用这个纹理作为背景(稍微暗一点)，并将输入/目标纹理交换到每一帧。除了更好的性能外，这种方法的优点是我们可以将它直接移植到原生代码(它没有<code>perservedrawingbuffer</code>相同的效果)。</p>
+<h2 id="风属性查找插值"><a href="#风属性查找插值" class="headerlink" title="风属性查找插值"></a>风属性查找插值</h2><p><img src="http://static.zybuluo.com/bingqixuan/7rmlv0wzlhcql3gopw2o6uzm/image_1bmlrorl5gvk8a5f2n1nn165r30.png" alt="image_1bmlrorl5gvk8a5f2n1nn165r30.png-210.4kB"><br>风数据对纬度/经度网格的特定点有值，例如(50,30)，(51,30)，(50,31)，(51,31)地理位置。如何得到一个任意的中间值，例如(50.123,30.744)?</p>
+<p>当你查找纹理颜色的时候OpenGL自带插值。然而，它仍然导致了块状、像素化的模式。这里有一个例子，在风纹理中缩放的时候:<br><img src="http://static.zybuluo.com/bingqixuan/n1lfqrwz8lv1z438a82k56r6/image_1bmlrul5g50q1nnu148pr0m1ouc3t.png" alt="image_1bmlrul5g50q1nnu148pr0m1ouc3t.png-76.8kB"><br>原生GL的线性插值</p>
+<p>幸运的是，我们可以通过在每个风测点中查找4个相邻像素来平滑这些工件，并在原生的一个片段着色器上做手工双线性插值运算。它虽然代价更高，但修复了问题，并可以实现更流畅的风可视化。<br><img src="http://static.zybuluo.com/bingqixuan/v5uzj7d6q65bu1o0toqh4x6r/image_1bmlt90la1qv44q71sr72vt15tc4a.png" alt="image_1bmlt90la1qv44q71sr72vt15tc4a.png-67.5kB"><br>     在片元着色器上的双线性插值</p>
+<h2 id="在GPU上的伪随机生成器"><a href="#在GPU上的伪随机生成器" class="headerlink" title="在GPU上的伪随机生成器"></a>在GPU上的伪随机生成器</h2><p>在GPU上实现的一个棘手的逻辑是随机重新设置粒子位置。如果没有这个，即使是大量的风粒子也会退化成屏幕上的几条线，因为风吹过的区域随着时间的推移变得空空如也:<br><img src="http://static.zybuluo.com/bingqixuan/m41l7zdo97av4xkytdxhouva/image_1bmltd9vj8q2qp7173i851frt4n.png" alt="image_1bmltd9vj8q2qp7173i851frt4n.png-478.7kB"></p>
+<p>问题是，着色器没有随机数生成器。我们如何随机决定一个粒子是否需要重置?</p>
+<p>在StackOverflow上找到了一个解决方案————一个用于伪随机数生成的GLSL函数，它接受一对数字作为输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">float rand(const vec2 co) &#123;</span><br><span class="line">    float t = dot(vec2(12.9898, 78.233), co);</span><br><span class="line">    return fract(sin(t) * (4375.85453 + t));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个奇异的函数依赖于<code>sin</code>产生的很多比较大的值。然后我们可以这样做:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (rand(some_numbers) &gt; 0.99) </span><br><span class="line">    reset_particle_position();</span><br></pre></td></tr></table></figure></p>
+<p>目前的挑战是为每个粒子选择一个“随机”的输入，这样生成的值就会在屏幕上均匀分布，不会出现奇怪的模式。</p>
+<p>由于相同的粒子位置总是产生相同的随机数，所以使用当前的粒子位置并不完美，一些粒子会在同一区域消失。</p>
+<p>在状态纹理中使用粒子位置也不起作用，因为同样的粒子总是会消失。</p>
+<p>我最终得到的结果取决于粒子位置和状态位置再加上一个随机值，它在每一帧上进行计算并传递给了着色器:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vec2 seed = (pos + v_tex_pos) * u_rand_seed;</span><br></pre></td></tr></table></figure></p>
+<p>但是我们还有一个小问题————粒子运动非常快的区域要比风少的区域稠密。我们可以通过提高微粒复位率来平衡这一点:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float dropRate = u_drop_rate + speed_t * u_drop_rate_bump;</span><br></pre></td></tr></table></figure></p>
+<p>这里的<code>speed _t</code>是相对速度值(从0到1)，<code>u_drop_rate</code>和<code>u_drop_rate_bump</code>是你可以在最终的可视化中进行调整的参数。下面是它如何影响结果的一个例子:<br><img src="http://static.zybuluo.com/bingqixuan/76p45935q917iajmkqcefg5n/image_1bmluc8qk1g49fm6kgc16jcfr854.png" alt="image_1bmluc8qk1g49fm6kgc16jcfr854.png-892.2kB"></p>
+<p><img src="http://static.zybuluo.com/bingqixuan/3u1tlze15kjzzhbqme1nasiz/image_1bmlucjct50b1asjdorfmentd5h.png" alt="image_1bmlucjct50b1asjdorfmentd5h.png-914.5kB"></p>
+
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="2018/10/16/WebGL风向图/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cyto6Grxh';
+var conf = 'cbf094674ac763f46f6f8b4f502b2371';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/10/15/深入研究空间搜索算法——在瞬间搜索数百万个点/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
