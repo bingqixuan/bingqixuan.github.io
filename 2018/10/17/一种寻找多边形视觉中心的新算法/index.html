@@ -12,7 +12,7 @@
     
     <title>
         
-            深入研究空间搜索算法——在瞬间搜索数百万个点 | 
+            一种寻找多边形视觉中心的新算法 | 
         
         溪衍之路
     </title>
@@ -67,18 +67,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="深入研究空间搜索算法——在瞬间搜索数百万个点 | 溪衍之路">
+    <meta property="og:title" content="一种寻找多边形视觉中心的新算法 | 溪衍之路">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="一路向前，不见归路。">
     
 
     
-        <meta property="article:published_time" content="10月 15, 2018" />
-        <meta property="article:modified_time" content="10月 15, 2018" />
+        <meta property="article:published_time" content="10月 17, 2018" />
+        <meta property="article:modified_time" content="10月 17, 2018" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="深入研究空间搜索算法——在瞬间搜索数百万个点 | 溪衍之路">
+    <meta name="twitter:title" content="一种寻找多边形视觉中心的新算法 | 溪衍之路">
     <meta name="twitter:description" content="一路向前，不见归路。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -86,7 +86,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/2018/10/15/深入研究空间搜索算法——在瞬间搜索数百万个点/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2018/10/17/一种寻找多边形视觉中心的新算法/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -112,10 +112,10 @@
         },
         "description": "主要聚焦于GIS领域、可视化、大前端"
     },
-    "headline": "深入研究空间搜索算法——在瞬间搜索数百万个点",
-    "url": "http://yoursite.com/2018/10/15/深入研究空间搜索算法——在瞬间搜索数百万个点/index.html",
-    "datePublished": "10月 15, 2018",
-    "dateModified": "10月 15, 2018",
+    "headline": "一种寻找多边形视觉中心的新算法",
+    "url": "http://yoursite.com/2018/10/17/一种寻找多边形视觉中心的新算法/index.html",
+    "datePublished": "10月 17, 2018",
+    "dateModified": "10月 17, 2018",
     "description": "一路向前，不见归路。",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -328,7 +328,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#空间搜索问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">空间搜索问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#k-最邻近算法"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">k-最邻近算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#范围和半径查询"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">范围和半径查询</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#空间树的工作原理"><span class="post-toc-number">2.</span> <span class="post-toc-text">空间树的工作原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#R树"><span class="post-toc-number">3.</span> <span class="post-toc-text">R树</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#K-d树"><span class="post-toc-number">4.</span> <span class="post-toc-text">K-d树</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#树中的范围查询"><span class="post-toc-number">5.</span> <span class="post-toc-text">树中的范围查询</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#K最邻近-kNN-查询"><span class="post-toc-number">6.</span> <span class="post-toc-text">K最邻近(kNN)查询</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#定制kNN距离度量"><span class="post-toc-number">7.</span> <span class="post-toc-text">定制kNN距离度量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#未完待续"><span class="post-toc-number">8.</span> <span class="post-toc-text">未完待续</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#遇到的问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">遇到的问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#现有的解决方案"><span class="post-toc-number">2.</span> <span class="post-toc-text">现有的解决方案</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#新的解决方案"><span class="post-toc-number">3.</span> <span class="post-toc-text">新的解决方案</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#寻找更快的解决方案"><span class="post-toc-number">4.</span> <span class="post-toc-text">寻找更快的解决方案</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -366,7 +366,7 @@
         
     
             <p class="article-headline-p">
-                深入研究空间搜索算法——在瞬间搜索数百万个点
+                一种寻找多边形视觉中心的新算法
             </p>
         </div>
 
@@ -385,7 +385,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>溪衍</strong>
-        <span>10月 15, 2018</span>
+        <span>10月 17, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -425,7 +425,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=深入研究空间搜索算法——在瞬间搜索数百万个点&url=http://yoursite.com/2018/10/15/深入研究空间搜索算法——在瞬间搜索数百万个点/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=一种寻找多边形视觉中心的新算法&url=http://yoursite.com/2018/10/17/一种寻找多边形视觉中心的新算法/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -434,7 +434,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=深入研究空间搜索算法——在瞬间搜索数百万个点&url=http://yoursite.com/2018/10/15/深入研究空间搜索算法——在瞬间搜索数百万个点/index.html&via=溪衍" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=一种寻找多边形视觉中心的新算法&url=http://yoursite.com/2018/10/17/一种寻找多边形视觉中心的新算法/index.html&via=溪衍" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -443,7 +443,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/15/深入研究空间搜索算法——在瞬间搜索数百万个点/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/17/一种寻找多边形视觉中心的新算法/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -452,7 +452,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/15/深入研究空间搜索算法——在瞬间搜索数百万个点/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/17/一种寻找多边形视觉中心的新算法/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -464,7 +464,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=溪衍之路&title=深入研究空间搜索算法——在瞬间搜索数百万个点&summary=一路向前，不见归路。&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2018/10/15/深入研究空间搜索算法——在瞬间搜索数百万个点/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=溪衍之路&title=一种寻找多边形视觉中心的新算法&summary=一路向前，不见归路。&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2018/10/17/一种寻找多边形视觉中心的新算法/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -482,76 +482,44 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>翻译自：<a href="https://blog.mapbox.com/a-dive-into-spatial-search-algorithms-ebd0c5e39d2a，作者：Vladimir" target="_blank" rel="noopener">https://blog.mapbox.com/a-dive-into-spatial-search-algorithms-ebd0c5e39d2a，作者：Vladimir</a> Agafonkin</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/pd5ea2z4f2g7hdpx38w8roa8/11.png" alt="11.png-405.3kB"><br><em>地球上有13.8万人口的地方的r树可视化图</em></p>
-<p>我痴迷于软件性能。我在Mapbox的主要职责之一是发现使我们的地图平台更快的方法。当涉及到按比例处理和显示空间数据时，没有比空间索引更有用和重要的概念了。</p>
-<p>空间索引是一组用于高效搜索的排列几何数据的算法。例如，执行诸如“返回该区域的所有建筑”、“找到1000个离此点最近的加油站”之类的查询，并在几毫秒内返回结果，即使搜索了数百万个对象。</p>
-<p>空间索引是PostGIS等数据库的基础，是我们平台的核心。但是，在性能至关重要的许多其他任务中，它们也非常有用。特别地，处理遥测数据，例如将数以百万计的GPS速度样本与道路网络相匹配，为我们的导航服务生成实时交通数据。在客户端，示例包括实时在地图上放置标签，以及在鼠标悬停时查找地图对象。</p>
-<p>在过去的4年里，我为空间搜索构建了一些超快的JavaScript库: <a href="https://github.com/mourner/rbush" target="_blank" rel="noopener">rbush</a>, <a href="https://github.com/mourner/rbush-knn/" target="_blank" rel="noopener">rbush-knn</a>, <a href="https://github.com/mourner/kdbush" target="_blank" rel="noopener">kdbush</a>, <a href="https://github.com/mourner/geokdbush" target="_blank" rel="noopener">geokdbush</a>(后面还有一些)。在这篇文章中，我将尝试描述它们是如何工作的。</p>
-<h2 id="空间搜索问题"><a href="#空间搜索问题" class="headerlink" title="空间搜索问题"></a>空间搜索问题</h2><p>空间数据有两种基本查询类型:最近邻查询和范围查询。两者都是许多几何和GIS问题的基础。</p>
-<h3 id="k-最邻近算法"><a href="#k-最邻近算法" class="headerlink" title="k-最邻近算法"></a>k-最邻近算法</h3><p><img src="http://static.zybuluo.com/bingqixuan/5pc0926p9kk8wumk3s11e75k/11.png" alt="11.png-25.6kB"><br><em>某点的三个最临近的点</em></p>
-<p>给定数千个点，例如城市位置，我们如何查询离给定查询点最近的点?</p>
-<p>一种直观的方法是:</p>
-<ol>
-<li>计算从查询点到每一个其他点的距离。</li>
-<li>把这些点按距离排序。</li>
-<li>返回第一个K项。</li>
-</ol>
-<p>如果有几百个点就可以使用这种方法。但如果我们有数百万个点，那么这些查询将太慢而无法在实践中使用。</p>
-<h3 id="范围和半径查询"><a href="#范围和半径查询" class="headerlink" title="范围和半径查询"></a>范围和半径查询</h3><p><img src="http://static.zybuluo.com/bingqixuan/3z71surqd1qdeofzpq5x2221/11.png" alt="11.png-21.4kB"></p>
-<p>我们如何检索内部的所有点…</p>
+        <p>翻译自：<a href="https://blog.mapbox.com/a-new-algorithm-for-finding-a-visual-center-of-a-polygon-7c77e6492fbc，" target="_blank" rel="noopener">https://blog.mapbox.com/a-new-algorithm-for-finding-a-visual-center-of-a-polygon-7c77e6492fbc，</a> 作者： Vladimir Agafonkin</p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a><strong>遇到的问题</strong></h2><p>在一个多边形上放置文本标签或工具提示的最佳位置通常位于其“视觉中心”的某个位置，即多边形内部的一个点，周围有尽可能多的空间。</p>
+<p>计算这样一个中心首先想到的是<strong>多边形质心</strong>。你可以用一个简单快速的<a href="https://en.wikipedia.org/wiki/Centroid#Centroid_of_polygon" target="_blank" rel="noopener">公式</a>计算多边形中心，但如果形状是凹的或有一个洞，点可以落在形状外面。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/pyz00srmlkxzmqmxxufy52u7/11.png" alt="11.png-83.5kB"></p>
+<p>我们如何定义我们需要的点?一个更可靠的定义是”不可到达的极点”或”最大内接圆”:多边形中离边缘最远的点。</p>
+<p>不幸的是，计算不可访问性的极点既复杂又缓慢。公布的解决方案需要<a href="https://en.wikipedia.org/wiki/Constrained_Delaunay_triangulation" target="_blank" rel="noopener">约束delaunay三角化(Constrained Delaunay Triangulation)</a>或计算一个<a href="https://en.wikipedia.org/wiki/Straight_skeleton" target="_blank" rel="noopener">直线骨架</a>作为预处理步骤——这两个步骤都是缓慢且容易出错的。</p>
+<p>对于我们的用例，我们不需要<strong>一个精确解</strong>——我们愿意牺牲一些精度来获得更快的速度。当我们在地图上放置标签时，以毫秒为单位计算比精确计算更重要。我们为这个问题创建了一个新的启发式算法。</p>
+<h2 id="现有的解决方案"><a href="#现有的解决方案" class="headerlink" title="现有的解决方案"></a><strong>现有的解决方案</strong></h2><p>这项在线任务的唯一近似算法是由<a href="https://sites.google.com/site/polesofinaccessibility/" target="_blank" rel="noopener">加西亚-卡斯特利亚诺斯和伦巴多在2007年的论文</a>中描述的。算法是这样的:</p>
 <ul>
-<li>一个矩形吗?(范围查询)</li>
-<li>一个圆吗?(半径查询)</li>
+<li>将点置于任意大小的网格上(本文中为24x24，或576个点)，在其边界框内探测多边形，丢弃多边形外的所有点。</li>
+<li>计算每个点到多边形的距离，选择距离最长的点。</li>
+<li>重复上面的步骤，但是在这一点上有一个更小的网格(比任意系数1.414小)。</li>
+<li>该算法运行多次，直到搜索区域足够小，达到我们想要的精度。</li>
 </ul>
-<p>朴素的方法是遍历所有点。但是，如果数据库很大，并且每秒有数千个查询，那么这将失败。</p>
-<h2 id="空间树的工作原理"><a href="#空间树的工作原理" class="headerlink" title="空间树的工作原理"></a>空间树的工作原理</h2><p>要在尺度上解决这两个问题，就需要把这些点放到一个空间索引中。数据更改的频率通常远低于查询，因此将数据处理到索引中的初始成本作为事后即时搜索的合理代价。</p>
-<p>几乎所有空间数据结构都共享一个原则，以支持高效搜索:分支和范围。这意味着在树状结构中排列数据，如果分支不符合我们的搜索条件，就可以立即丢弃它们。</p>
-<h2 id="R树"><a href="#R树" class="headerlink" title="R树"></a>R树</h2><p>为了了解这是如何工作的，让我们从一堆输入点开始，然后把它们分类成9个矩形框，每个框里的点数量都差不多:</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/4ji8jzilff8yx4t8rkxorafh/11.png" alt="11.png-679.7kB"></p>
-<p>现在让我们把每个盒子分成9个小盒子:</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/zxh92uco675klp1lnwctqxn6/11.png" alt="11.png-702kB"></p>
-<p>我们将重复几次相同的过程，直到最后的方框内最多包含9个点:</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/xezy6bqempf0ch1627ud9o77/11.png" alt="11.png-766.7kB"></p>
-<p>现在我们得到了一个R树!这可以说是最常见的空间数据结构。它被所有现代空间数据库和许多游戏引擎所使用。R-tree也在我的<a href="https://github.com/mourner/rbush" target="_blank" rel="noopener">rbush</a> JS库中实现。</p>
-<p>除了点之外，R-tree还可以包含矩形，矩形反过来可以表示任何类型的几何对象。它还可以扩展到三维或多维。但为了简单起见，我们将在本文的其余部分讨论2D点。</p>
-<h2 id="K-d树"><a href="#K-d树" class="headerlink" title="K-d树"></a>K-d树</h2><p>K-d树是另一种流行的空间数据结构。我的静态2D点索引的JS库<a href="https://github.com/mourner/kdbush" target="_blank" rel="noopener">kdbush</a>就是基于它的。K-d树类似于R树，但是我们并没有将树上每个层级的点分成几个盒子，而是将它们分成两半(围绕一个中值点)——或者是左右，或者是顶部和底部，在每一层的x和y分裂之间交替进行。是这样的:</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/o5gxtcq8q68ii6khc5mano9d/11.png" alt="11.png-404.4kB"><br><em>K-d树的前三层</em></p>
-<p>与R树相比，K-d树通常只包含点(不是矩形)，不处理添加和删除点。但它更容易实现，而且非常快。</p>
-<p>R树和K-d树都共享将数据划分为轴向树节点的原则。因此，下面讨论的搜索算法对于这两种树都是相同的。</p>
-<h2 id="树中的范围查询"><a href="#树中的范围查询" class="headerlink" title="树中的范围查询"></a>树中的范围查询</h2><p>一个典型的空间树是这样的:</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/xyf2squeaa24zhzcddnwle81/11.png" alt="11.png-30.9kB"></p>
-<p>每个节点都有固定数量的子节点(在我们的R-tree示例中，9)。对于一百万个点，树的高度将等于<code>ceil(log(1000000) / log(9)) = 7</code></p>
-<p>在这样的树上执行范围搜索时，我们可以从树顶部的一级开始并向下钻取，忽略所有不与查询框相交的范围框。对于一个小的查询框，这意味着在树的每一层丢弃大部分范围框。因此，相较于100万个方框而言，获得结果不需要超过60个范围框(<code>7 * 9 = 63</code>)。在这种情况下，它比单纯的循环搜索快16000倍。</p>
-<p>在学术术语中，R树中的范围搜索平均花费<code>O(K*log(N))</code>的时间(其中K是结果的数量)，而线性搜索要花费<code>O(N)</code>的时间。换句话说，它非常快。</p>
-<p>我们选择9作为节点大小，因为它是一个很好的默认值，但是根据经验，较高的值意味着更快的索引和更慢的查询，反之亦然。</p>
-<h2 id="K最邻近-kNN-查询"><a href="#K最邻近-kNN-查询" class="headerlink" title="K最邻近(kNN)查询"></a>K最邻近(kNN)查询</h2><p>邻近搜索稍微难一点。对于特定的查询点，我们如何知道要搜索最近的点的树节点?我们可以做一个半径查询，但是我们不知道选择哪一个半径——最近的点可能离我们很远。而且，在半径不断增加的情况下通过执行许多半径查询来得到一些结果，这样效率是很低的。</p>
-<p>为了搜索最邻近的空间树，我们将利用另一个整洁的数据结构——<a href="">优先队列</a>。它允许保持一个有序的项目列表，以非常快的方式取出“最小的”一个。我喜欢从头开始写东西来了解它们是如何工作的，所以这里有一个有史以来最好的优先队列JS库:<a href="https://github.com/mourner/tinyqueue" target="_blank" rel="noopener">tinyqueue</a>。</p>
-<p>让我们再看一下我们的R树例子:</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/u48904rc7iit1oxagg7n2mku/11.png" alt="11.png-766.7kB"></p>
-<p>通过直观的观察：当我们在一组特定的框中搜索K个最近的点时，离查询点更近的框更有可能得到我们要查找的点。为了充分利用这一点，我们从顶层开始搜索，将最大的方框按照从最近到最远的顺序排列在一个队列中:</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/ayf8l96svt6yl9n3amk1x8iv/11.png" alt="11.png-1.5kB"><br><em>第1级树节点</em></p>
-<p>接下来，我们“打开”最近的盒子，将其从队列中移除，并将其所有孩子(小盒子)与大盒子一起放回队列中:</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/c4662to2di2pd5iwhx1csos4/11.png" alt="11.png-2.6kB"><br><em>第1级和第2级树节点混合在一起</em></p>
-<p>我们继续这样做，每次打开最近的盒子，就把它的孩子放回队列。当从队列中删除的最近项是一个实际点时，它肯定是最近的点。队列顶部的第二个点是第二最近的点，以此类推。</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/sv9yc8e4l4blz1q65lixaqvh/11.png" alt="11.png-4.6kB"><br><em>所有级别的节点(包括点)混合在一起</em></p>
-<p>这是由于我们还没有打开的所有方框中只包含了距离这个方框远的点，所以我们从队列中拉出的任何点都会比其他方框中的点更近：</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/eytqg9zkdkxr10lny2tml0y7/11.png" alt="11.png-10.7kB"><br><em>从一点到盒子的距离是到盒子内点的距离的下限</em></p>
-<p>如果空间树平衡得很好(这意味着分支的大小大致相同)，那么我们只需要处理少数几个盒子——在搜索过程中不打开其余的盒子。这使得这个算法非常快。</p>
-<p>对于rbush，它是在<a href="https://github.com/mourner/rbush-knn/" target="_blank" rel="noopener">rbush-knn</a>模块中实现的。对于地理点，我最近发布了另一个kNN库——<a href="https://github.com/mourner/geokdbush" target="_blank" rel="noopener">geokdbush</a>，它优雅地处理了地球的曲率和日期行包装。它值得单独写一篇文章——这是我第一次在工作中应用微积分。</p>
-<h2 id="定制kNN距离度量"><a href="#定制kNN距离度量" class="headerlink" title="定制kNN距离度量"></a>定制kNN距离度量</h2><p>这种拆箱方法非常灵活，适用于点对点距离以外的其他距离类型。该算法依赖于查询与框内所有对象之间的定义的<em>下限（lower bound）</em>。如果我们可以为一个定制的度量定义这个下界，我们可以对它使用相同的算法。</p>
-<p>这意味着，例如，我们可以改变算法，搜索最接近线段的K个点(而不是一个点):</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/rqh10cyly7x6ultgwn48qega/11.png" alt="11.png-14.9kB"><br><em>从线段到边界框的距离，作为到框内点的距离的下限</em></p>
-<p>我们所需要的算法的唯一修改是用分段到点和分段到盒的距离代替点对点和点对盒的距离。</p>
-<p>特别是，当我在JS中创建了<a href="https://github.com/mapbox/concaveman" target="_blank" rel="noopener">Concaveman</a>，一个快速的2D凹面外壳库时，这就派上了用场。它需要很多点，然后形成一个这样的轮廓:</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/fzu65dc9638wjbmke08m4d2v/11.png" alt="11.png-392.7kB"><br><em>凹外壳(红线)由Concaveman生成</em></p>
-<p>该算法从一个凸包(计算速度很快)开始，然后通过最近的一个点将其片段向内弯曲:</p>
-<p><img src="http://static.zybuluo.com/bingqixuan/75ixhii31skq5mxl1tqyaozc/11.png" alt="11.png-63.6kB"></p>
-<p>这是一篇关于这个操作的论文的引用:</p>
-<blockquote>
-<p>在我们提出的凹壳算法中，从边界边缘寻找最近的内点——这些是挖掘目标点的候选点——是一个耗时的过程。为这一过程开发一种更有效的方法是未来的研究课题。</p>
-</blockquote>
-<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2><p>在本系列的后续文章中，我将介绍将kNN算法扩展到地理对象，并详细介绍树打包算法(如何将点优化地排序到“框”中)。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/ieocdud32fwoxv8bm4f7rjrn/11.png" alt="11.png-414.2kB"></p>
+<p>这个算法有两个问题:</p>
+<ul>
+<li>它不能保证找到一个好的解决方案，这取决于机会和外形相对良好的多边形。</li>
+<li>在较大的多边形上运行速度较慢，因为有很多点检查的过程。对于上图中的每个蓝点，你必须循环遍历所有多边形点。</li>
+</ul>
+<p>然而，以这个想法为灵感，我们设法设计了一个新的算法来修复这两个缺陷。</p>
+<h2 id="新的解决方案"><a href="#新的解决方案" class="headerlink" title="新的解决方案"></a><strong>新的解决方案</strong></h2><p>我们需要设计一种不依赖于任意常数的算法，并且能够以可靠的增加精度对整个多边形进行彻底搜索。那么就有一个熟悉的概念可以与这个问题直接相关——<a href="https://en.wikipedia.org/wiki/Quadtree" target="_blank" rel="noopener">四叉树</a>。</p>
+<p>四叉树的主要概念是递归地将二维空间细分为四个象限。这在许多应用程序中都有应用——不仅是空间索引，而且有图像压缩，甚至是物理模拟，在这些应用程序中，提高特定领域的自适应精度是有益的。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/79ni4p3556yr7rkzjxua3cmq/11.jpg" alt="11.jpg-81.5kB"></p>
+<p>下面我们将介绍如何将四叉树分区应用于查找不可访问极点的问题。</p>
+<ol>
+<li>从覆盖多边形的几个大单元开始。</li>
+<li>递归地将它们细分为4个较小的单元，探索单元中心作为候选，丢弃那些不可能包含比我们已经找到的更好的解决方案的单元。</li>
+</ol>
+<p>由于搜索是彻底的，我们最终会找到一个保证在全局最优范围内的单元。</p>
+<p>我们如何知道某单元是否可以被丢弃?让我们考虑一个多边形上的方形单元格:</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/nh0inec6mf1ieqyx7k46iv1j/11.jpg" alt="11.jpg-34.9kB"></p>
+<p>如果我们知道从单元中心到多边形的距离(上面的<code>dist</code>)，单元内的任何一点到多边形的距离都不能大于<code>dist</code>+<code>radius</code>，其中<code>radius</code>就是单元的半径。如果潜在单元格最大值小于或等于我们已经处理过的单元格的最佳距离(在给定的精度范围内)，我们可以放心地丢弃这个单元格。</p>
+<p>为了使这个假设对任何单元格都能正确工作，不管它们的中心是否在多边形内，我们需要使用到多边形的<strong>有符号</strong>距离——如果一个点在多边形内为正，如果它在多边形外为负。</p>
+<h2 id="寻找更快的解决方案"><a href="#寻找更快的解决方案" class="headerlink" title="寻找更快的解决方案"></a><strong>寻找更快的解决方案</strong></h2><p>越早发现一个远离多边形边缘的“好的”单元格，我们在运行中丢弃的单元格就越多，搜索速度也就越快。那么我们如何更快地找到好的单元格呢?</p>
+<p>我们决定试试另一种方法。我们开始管理优先队列中的单元格，按照单元格的“潜力（potential）”：<code>dist + radius</code>进行排序。通过这种方式，单元格按照其潜力的顺序进行处理。差不多使算法的性能提高了一倍。</p>
+<p>我们可以做到的另一个加速方法是把多边形质心作为第一个“最佳猜测”，这样我们就可以丢弃所有更坏的单元格。这提高了形状相对规则的多边形的性能。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>最终得出来的算法就是<a href="https://github.com/mapbox/polylabel" target="_blank" rel="noopener">Polylabel</a>，这是一个快速而精确的JavaScript模块，用于查找合适的点，以便在多边形上放置标签。它比我们开始时的算法快40倍，同时保证在所有情况下都能得到正确的结果。</p>
 
     
 
@@ -567,7 +535,7 @@
     <!-- 使用 changyan -->
 <div id="changyan-comment">
     <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="2018/10/15/深入研究空间搜索算法——在瞬间搜索数百万个点/"  ></div>
+<div id="SOHUCS" sid="2018/10/17/一种寻找多边形视觉中心的新算法/"  ></div>
 <script type="text/javascript">
 (function(){
 var appid = 'cyto6Grxh';
@@ -591,21 +559,13 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/10/16/WebGL风向图/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2018/10/11/MapboxGL开发之在交互式地图上可视化街道方向/" id="post_nav-older" class="next-content">
+        <a href="/2018/10/16/用Supercluster在地图上聚合数百万个点/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
