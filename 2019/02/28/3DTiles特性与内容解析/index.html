@@ -12,7 +12,7 @@
     
     <title>
         
-            归档: 2019/2 | 
+            3DTiles特性与内容解析 | 
         
         溪衍之路
     </title>
@@ -67,15 +67,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2019/2 | 溪衍之路">
+    <meta property="og:title" content="3DTiles特性与内容解析 | 溪衍之路">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="一路向前，不见归路。">
     
 
     
+        <meta property="article:published_time" content="2月 28, 2019" />
+        <meta property="article:modified_time" content="2月 28, 2019" />
+    
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="归档: 2019/2 | 溪衍之路">
+    <meta name="twitter:title" content="3DTiles特性与内容解析 | 溪衍之路">
     <meta name="twitter:description" content="一路向前，不见归路。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -83,13 +86,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/archives/2019/02/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2019/02/28/3DTiles特性与内容解析/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "溪衍之路",
+        "logo": "/img/favicon.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "溪衍",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.png"
+        },
+        "description": "主要聚焦于GIS可视化"
+    },
+    "headline": "3DTiles特性与内容解析",
+    "url": "http://yoursite.com/2019/02/28/3DTiles特性与内容解析/index.html",
+    "datePublished": "2月 28, 2019",
+    "dateModified": "2月 28, 2019",
+    "description": "一路向前，不见归路。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://yoursite.com"
+    }
+}
+</script>
 
 
     
@@ -268,233 +301,269 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#瓦片种类"><span class="post-toc-number">1.</span> <span class="post-toc-text">瓦片种类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#b3dm-Batched-3D-Model，批量3D模型"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">b3dm(Batched 3D Model，批量3D模型)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#i3dm-Instanced-3D-Model，实例化3D模型"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">i3dm(Instanced 3D Model，实例化3D模型)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#瓦片索引机制自由"><span class="post-toc-number">2.</span> <span class="post-toc-text">瓦片索引机制自由</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对象映射机制自由"><span class="post-toc-number">3.</span> <span class="post-toc-text">对象映射机制自由</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#位置变换机制多样"><span class="post-toc-number">4.</span> <span class="post-toc-text">位置变换机制多样</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#LOD配置多样"><span class="post-toc-number">5.</span> <span class="post-toc-text">LOD配置多样</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#属性数据配置多样"><span class="post-toc-number">6.</span> <span class="post-toc-text">属性数据配置多样</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料："><span class="post-toc-number">7.</span> <span class="post-toc-text">参考资料：</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/02/28/3DTiles特性与内容解析/">3DTiles特性与内容解析</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            瓦片种类
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/02/28/3DTiles特性与内容解析/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>2月 28, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2019/02/28/3DTiles特性与内容解析/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/02/22/3DTiles效率优化（2）—— 采用Draco压缩模型/">3DTiles效率优化（2）—— 采用Draco压缩模型</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            Draco是一个用于网格压缩的glTF扩展，它是谷歌开发的一个开源库，用于压缩和解压缩3D网格，以显著减少3D内容的大小。它可以压缩顶点位置、法线、...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/02/22/3DTiles效率优化（2）—— 采用Draco压缩模型/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>2月 22, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2019/02/22/3DTiles效率优化（2）—— 采用Draco压缩模型/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/02/01/Cesium阴影技术/">Cesium阴影技术</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            Cesium的阴影技术用的是Cascaded Shadow Mapping(简称CSM)，
-先来说下两种阴影类型，一种是
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/02/01/Cesium阴影技术/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/tx.jpg" width="44px" height="44px" alt="溪衍's avatar">
-            </div>
-            <div>
-                <strong>溪衍</strong>
-                <span>2月 01, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2019/02/01/Cesium阴影技术/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                3DTiles特性与内容解析
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/tx.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>溪衍</strong>
+        <span>2月 28, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=3DTiles特性与内容解析&url=http://yoursite.com/2019/02/28/3DTiles特性与内容解析/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=3DTiles特性与内容解析&url=http://yoursite.com/2019/02/28/3DTiles特性与内容解析/index.html&via=溪衍" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/02/28/3DTiles特性与内容解析/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2019/02/28/3DTiles特性与内容解析/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=溪衍之路&title=3DTiles特性与内容解析&summary=一路向前，不见归路。&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2019/02/28/3DTiles特性与内容解析/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="瓦片种类"><a href="#瓦片种类" class="headerlink" title="瓦片种类"></a>瓦片种类</h2><p>3DTiles瓦片有多种类型：</p>
+<h3 id="b3dm-Batched-3D-Model，批量3D模型"><a href="#b3dm-Batched-3D-Model，批量3D模型" class="headerlink" title="b3dm(Batched 3D Model，批量3D模型)"></a>b3dm(Batched 3D Model，批量3D模型)</h3><p>b3dm瓦片存储了多个个体，b3dm中的glb代表的实际对象应该具有相同的种类但是可能数据内容不同。b3dm瓦片可以用于存储带纹理的地形表面、三维建筑物的外部和内部、大量的模型等。对于带纹理的地形表面，由于没有要素化的特征，所以瓦片不带有属性数据。而对于复杂建筑物的外表和内部结构（BIM数据）以及海量的三维模型数据，由于具有要素化的特征，所以需要在瓦片数据中增加批量模型的id以区分要素。从这里看出，b3dm瓦片的应用范围在空间尺度上看并没有约束，核心应用原则是针对数量巨大的要素部件，并且这与要素表达的物体类型无关。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/4ejozxdfcxrowpgzepusped1/layout.png" alt="layout.png-10.7kB"></p>
+<p>b3dm的基本文件结构是文件头部加主体。文件头部记录了文件类型、版本、大小等基本信息，同时也记录了要素表和批量表的大小。主体部分首先是要素表与批量表，然后是存储模型的glb文件。要素表存储要素的元数据（要素个数），批量表存储具体属性（要素id等），要素表与批量表可以采用JSON文本或二进制，没有强制要求。glb文件被内嵌到b3dm文件中，其中使用的几何数据和图片资源可以集成到glb，也可以采用外部引用形式。b3dm是3DTiles中用途最多、使用最频繁的瓦片数据种类，b3dm对于“批量”的定义需要被客观精确的理解。</p>
+<h3 id="i3dm-Instanced-3D-Model，实例化3D模型"><a href="#i3dm-Instanced-3D-Model，实例化3D模型" class="headerlink" title="i3dm(Instanced 3D Model，实例化3D模型)"></a>i3dm(Instanced 3D Model，实例化3D模型)</h3><p>i3dm瓦片也存储glb的模型，但是i3dm瓦片强调物体的可复制性。这说明i3dm的模型只用于表达一个对象，通过指定位置该模型对象可以在多个位置出现。官方建议，i3dm可以用于存储大尺度上的树木、风车、消防栓、井盖、路灯、信号灯等物体，也可以用于存储小尺度上的螺丝钉、阀门、插座等。i3dm体现的是要素的相同性，这种相同性不仅表现在要素的种类，也表现在具体的内容。i3dm从很大程度上减少了数据冗余度，这也刚好诠释了i3dm对于“实例”的含义。i3dm文件的基本结构与b3dm类似，如下图所示，文件的头部仅仅多了对引用glb文件的描述（url或内嵌二进制glTF）。i3dm与b3dm的差别主要在要素表部分，i3dm的要素表除了实例的个数还需要存储实例出现的位置以及方位，通过位置坐标与方向参数确定实例模型在三维椭球上的渲染位置与姿态。此外，i3dm也提供了在局部地表的ENU坐标框架，当设置这种坐标框架开启时可以不用设置模型方位参数，而改由Cesium运行环境计算所需参数。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/krl6ik1escyyccpgue190hjw/image_1d4hr106m1ibd1k5t1n8e2bhcav9.png" alt="image_1d4hr106m1ibd1k5t1n8e2bhcav9.png-93.6kB"></p>
+<h2 id="瓦片索引机制自由"><a href="#瓦片索引机制自由" class="headerlink" title="瓦片索引机制自由"></a>瓦片索引机制自由</h2><p>3DTiles没有强制要求瓦片索引树的具体结构，对瓦片空间的划分方式上也没有强制定义，仅仅要求瓦片所占据的空间在整个瓦片索引树结构中要保持空间一致性。<br>对于同样的地理空间，k-d树具有最深的分割层次，四叉树和八叉树次之，格网最浅。其中，格网索引结构对Cesium的压力最大，因为所有的子节点都在根节点下，Cesium每一次对包围盒的检查都要遍历所有结点，所以格网适合分块较少的情况。k-d树对于Cesium的要求较小，但是每一次划分都不规则，分割的标准不好确定。所以，一般情况下都是用折中的四叉树结构或八叉树结构。由于八叉树多用于构建点云索引，所以对于3DTiles来说四叉树是地表空间附近常用的索引方案。</p>
+<h2 id="对象映射机制自由"><a href="#对象映射机制自由" class="headerlink" title="对象映射机制自由"></a>对象映射机制自由</h2><p>Cesium中所有三维模型的渲染最终都是以primitive图元为单位提交绘制命令的，图元中包含的数据有几何数据以及材质引用的纹理。Cesium研发团队为了在WebGL基础上实现要素拾取和属性查找的功能，对3DTiles瓦片中的gltf模型增加了新的内容：在primitive的attitude中增加了_BATCHID属性，_BATCHID属性与顶点数据类似，通过访问器连接到特定的二进制数据。_BATCHID存储的是整数数组，这个数组与顶点数组元素一一对应，也就是说每一个顶点都被打上了一个整数id的标记。Cesium在实现要素拾取时，只要拾取到渲染的图元中的三角形就可以得到该三角形的任意一个顶点，也就可以获取每个顶点对应的_BATCHID整数。然后由这个整数值在batchtable的属性数组中找到对应索引位置的属性数据。<br>b3dm使用的glb中_BATCHID整数通常采用UNSIGNED_SHORT类型（数值范围0~255），所以一般单个瓦片中的要素数量不超过256个。当某些时候要素数量超过这个值时，那么在生产数据时_BATCHID整数的类型要调整为UNSIGNED_INT（数值范围0~4294967295），但这种情况很少发生。下图是要素映射机制的图例。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/ldy1uewc86m5yha9gwhumxnn/image_1d4kbfpksni91dki1foqqr6fj79.png" alt="image_1d4kbfpksni91dki1foqqr6fj79.png-369.5kB"></p>
+<p>这种特殊的对象映射机制具有一种非常强大的优势：可以完全屏蔽掉gltf定义对要素的组织方式。也就是说，不论gltf根据自己的定义框架将待描述物体组织成什么结构，当gltf被包装成b3dm瓦片时依然可以对要素进行区分。这个方法跳过了gltf这一层数据框架的限制，使那些采用不同数据组织逻辑转化出的gltf数据都可以实现要素化。这样自由的要素映射机制使各种异质数据更加容易转化，体现了3DTiles的兼容性。但是从数据生产上游角度来看，在gltf转化成3DTiles之前，仍然要明确要素在gltf中的结构。只有这样对_BATCHID数据的构造才是符合逻辑的。</p>
+<h2 id="位置变换机制多样"><a href="#位置变换机制多样" class="headerlink" title="位置变换机制多样"></a>位置变换机制多样</h2><p>在3DTiles中有很多设置瓦片坐标的变换方法：</p>
+<ol>
+<li>通过瓦片集索引树中的transform属性设置矩阵</li>
+<li>通过瓦片内gltf的节点矩阵设置</li>
+<li>通过<code>CESIUM_RTC</code>扩展来添加平移量</li>
+</ol>
+<p>一般情况下转换为3DTiles的数据源模型都在一个局部坐标框架下。以ENU坐标系为例，在这个坐标系下，空间的正东、正北以及上坐标都是确定的，坐标原点对应着在椭球上的地理位置，这样模型存储在这个坐标系中的位置也是固定的。那么，为了将局部坐标系的模型放置在椭球表面时，需要的工作就是根据函数Transforms.eastNorthUpToFixedFrame计算坐标变换矩阵M，并把坐标变换矩阵M配置到3DTiles数据中。在Cesium上直接加载gltf的API就是根据计算出的矩阵M将gltf模型放置在椭球表面上的。由于设置变换矩阵有很多方法，所以配置矩阵就有很多方案。第一种方案，将矩阵M直接配置在瓦片元数据的transform属性中；第二种方案，将矩阵M配置到gltf的根节点中；第三种方案，将矩阵M分解为平移矩阵T和旋转矩阵R，即M=TR，将旋转矩阵R配置给gltf的根节点矩阵，将矩阵T中平移参数作为平移分量设置为gltf定义的扩展设置CESIUM_RTC；第四种方案，将M分解的平移矩阵T分量配置给CESIUM_RTC，将R矩阵作用于顶点和外法向量数据，直接改动模型底层的顶点数据。</p>
+<h2 id="LOD配置多样"><a href="#LOD配置多样" class="headerlink" title="LOD配置多样"></a>LOD配置多样</h2><p>3DTiles瓦片精化方式有两种：REPLACE和ADD。REPLACE就是用子节点中更加精细的模型代替父节点中略显粗糙的模型，各层数据可以通过最精细模型采用自动简化算法获得。ADD则提供了另外一种不同的思路：在父亲节点的模型基础上再增加一些相对次要的模型，从而使三维场景包含更多的信息。下图是两种方式的对比图：</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/ru5hqw9itd1d84spnwp7aqkn/image_1d4kgklspvo31ium10qiltu1iu4m.png" alt="image_1d4kgklspvo31ium10qiltu1iu4m.png-544.6kB"></p>
+<p>在大空间范围内的海量建筑物显示以及小空间范围内的精细复杂模型的显示都可以用合适的精化方式来表示。例如，大范围的倾斜摄影OSGB数据本身带有LOD，可以很容易的转成REPLACE精化方式下的3DTiles数据。又如，通过OSM数据生产的纽约城市建筑物3DTiles，是采用ADD精化方式组织的建筑物瓦片，加载时先加载节点树中顶层的模型，然后根据区域逐层添加次要建筑。此外，在BIM数据的表现方面3DTiles的精化逻辑也可以完美的适应，根据数据源的基本结构也可以采用ADD精化方式组织BIM模型部件。除了这些常用的LOD方式，ADD和REPLACE方式也可以混合使用，这样生产的3DTiles数据会具有更加优化的显示效果。</p>
+<h2 id="属性数据配置多样"><a href="#属性数据配置多样" class="headerlink" title="属性数据配置多样"></a>属性数据配置多样</h2><p>关于属性数据配置有多种方案：<br>（1）项目应用仅仅为了显示，与要素和属性无关。在这种情况下，3DTiles只需要储存模型数据，所以b3dm瓦片中的batchTable批量表为空，内嵌glb中的_BATCHID数据不需要。这种情况很多，比如加载显示倾斜摄影模型或三维地形等。<br>（2）项目应用需要存储要素与属性。此时内嵌gltf需要_BATCHID数据，但batchTable批量表就存在两种可选的方案。一种是将属性数据全部存储到批量表中，与模型数据集中管理。另一种方案是属性数据存储到数据库中，批量表中只存储要素ID，使属性和模型分离。在应用开发时由Cesium运行环境获取要素ID，然后根据ID调用属性查询服务获取更加详细的属性信息。</p>
+<h2 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h2><ol>
+<li>3D_Tiles定义解析与生产规范设计，曹浩泽</li>
+</ol>
+
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="2019/02/28/3DTiles特性与内容解析/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cyto6Grxh';
+var conf = 'cbf094674ac763f46f6f8b4f502b2371';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/02/22/3DTiles效率优化（2）—— 采用Draco压缩模型/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
