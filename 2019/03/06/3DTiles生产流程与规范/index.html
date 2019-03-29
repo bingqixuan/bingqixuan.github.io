@@ -74,7 +74,7 @@
 
     
         <meta property="article:published_time" content="3月 06, 2019" />
-        <meta property="article:modified_time" content="3月 06, 2019" />
+        <meta property="article:modified_time" content="3月 29, 2019" />
     
 
     <!-- The Twitter Card protocol -->
@@ -115,7 +115,7 @@
     "headline": "3DTiles生产流程与规范",
     "url": "http://yoursite.com/2019/03/06/3DTiles生产流程与规范/index.html",
     "datePublished": "3月 06, 2019",
-    "dateModified": "3月 06, 2019",
+    "dateModified": "3月 29, 2019",
     "description": "一路向前，不见归路。",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -328,7 +328,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-倾斜摄影或点云建模"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 倾斜摄影或点云建模</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-地理要素数据集建模"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 地理要素数据集建模</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-地理要素数据的3DTiles生产"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 地理要素数据的3DTiles生产</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#瓦片切分"><span class="post-toc-number">1.</span> <span class="post-toc-text">瓦片切分</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#倾斜摄影或点云建模"><span class="post-toc-number">2.</span> <span class="post-toc-text">倾斜摄影或点云建模</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#地理要素数据集建模"><span class="post-toc-number">3.</span> <span class="post-toc-text">地理要素数据集建模</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#地理要素数据的3DTiles生产"><span class="post-toc-number">4.</span> <span class="post-toc-text">地理要素数据的3DTiles生产</span></a></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -482,14 +482,20 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="1-倾斜摄影或点云建模"><a href="#1-倾斜摄影或点云建模" class="headerlink" title="1. 倾斜摄影或点云建模"></a>1. 倾斜摄影或点云建模</h2><p><img src="http://static.zybuluo.com/bingqixuan/pxn2127ecmtsdk746oea3y04/image_1d56npg6i1oo44p4jvcaoq1dp89.png" alt="image_1d56npg6i1oo44p4jvcaoq1dp89.png-705.7kB"></p>
+        <h2 id="瓦片切分"><a href="#瓦片切分" class="headerlink" title="瓦片切分"></a>瓦片切分</h2><p>标准的四叉树切分对于均匀分布的地理数据切片非常有效，但是这样均等的切分不适用于随机分布、不均匀分布的地理数据，当地理数据稀疏分布的时候，均等的四叉树就不再高效，此时可以考虑用紧凑的包围盒代替均等的包围盒。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/ypq3pjdghz3ifqb9pkaazbwe/image_1d6ani78i3bmc2517qq8fid219.png" alt="image_1d6ani78i3bmc2517qq8fid219.png-62.8kB"><br><i>该图为紧凑包围盒的四叉树空间结构</i></p>
+<p>此外，对于上述稀疏不均匀分布的地理数据，还可以用KD树的切分方法。KD树的方法需要设置最大深度d。具体切分步骤如下：<br>（1）选择一个坐标轴，作为本次切分的基础坐标轴，计算所有几何体在该坐标轴上的中心值。<br>（2）以该中心值为界限将整个区域分为两块子瓦片，同时几何体也分为两组，分别划入子瓦片中。<br>（3）针对子瓦片重复上述操作，每次切分时旋转一次坐标轴作为新的基础坐标轴，每次切分相当于树结构的深度增加一层，当树的深度大于d时停止切分。</p>
+<p>KD树会将区域中的几何体分为两部分，所以这种方法生成的树结构具有较好的均衡性，也就是子瓦片中的几何复杂度都相对均匀。但是因为切分的的子瓦片只有两份，所以会产生相对较深的树结构，不适合大型数据集的切分。</p>
+<p><img src="http://static.zybuluo.com/bingqixuan/y1a5lrlo2hez8foxm0ztp5ao/image_1d741lbrg16o1372vu01bjoc92p.png" alt="image_1d741lbrg16o1372vu01bjoc92p.png-53.2kB"></p>
+<h2 id="倾斜摄影或点云建模"><a href="#倾斜摄影或点云建模" class="headerlink" title="倾斜摄影或点云建模"></a>倾斜摄影或点云建模</h2><p><img src="http://static.zybuluo.com/bingqixuan/pxn2127ecmtsdk746oea3y04/image_1d56npg6i1oo44p4jvcaoq1dp89.png" alt="image_1d56npg6i1oo44p4jvcaoq1dp89.png-705.7kB"></p>
 <p>&nbsp; &nbsp; 一切工作的开始是确定采集范围，根据采集范围创建索引并分割采集区域，创建索引得到索引树，分割区域得到瓦片包围盒的经纬度范围，同时根据既定的文件组织结构对保存各区域数据的瓦片文件命名。<br>&nbsp; &nbsp; 接下来按照采集区域进行采集，在采集过程中，可以一次性采集区域中多个建筑，或者使用设备逐个采集，这样得到的可能是包含多要素或单要素的格网模型。因为三维格网是有环境噪声的，所以需要用去噪方法将其中表示为建筑物的部分提取为要素化的三维模型。如果前面的采集对象为单体建筑物，则需要通过模型合并集中单体模型到一起，即合并成包含多个建筑物要素的模型文件。<br>&nbsp; &nbsp; 多要素模型向下要得出多个参数：一是根据多要素模型文件中的高度范围补充之前瓦片包围盒缺少的高度信息，二是将多要素模型通过地理坐标转换得到瓦片内数据的包围盒（进一步得到整个瓦片数据的地理坐标），并根据空间一致性检查修正瓦片包围盒，对模型超出的边界进行扩张，进而扩张父节点包围盒边界。三是根据对几何体误差的规定计算当前模型文件的几何体误差。四是将多要素模型转换为gltf格式，根据既定的局部框架，可以将局部矩阵集成到gltf中或者放到瓦片元数据中。<br>&nbsp; &nbsp; 最后进行数据装配：一是要把多要素gltf结合属性数据组装为瓦片数据文件b3dm，二是把瓦片文件url、包围盒、数据包围盒、几何体误差以及可能作为参数的瓦片地理位置转换的局部框架矩阵组装成瓦片元数据。三是把瓦片元数据与索引树构造为对应的JSON树，用来构建tileset.json文件。最后完成构造3DTiles的所有工作。</p>
-<h2 id="2-地理要素数据集建模"><a href="#2-地理要素数据集建模" class="headerlink" title="2. 地理要素数据集建模"></a>2. 地理要素数据集建模</h2><p><img src="http://static.zybuluo.com/bingqixuan/fvidse3grim32ovwj6fqoxyj/image_1d58skqjgv3d1bumd1ftki1r8mp.png" alt="image_1d58skqjgv3d1bumd1ftki1r8mp.png-831.3kB"></p>
+<h2 id="地理要素数据集建模"><a href="#地理要素数据集建模" class="headerlink" title="地理要素数据集建模"></a>地理要素数据集建模</h2><p><img src="http://static.zybuluo.com/bingqixuan/fvidse3grim32ovwj6fqoxyj/image_1d58skqjgv3d1bumd1ftki1r8mp.png" alt="image_1d58skqjgv3d1bumd1ftki1r8mp.png-831.3kB"></p>
 <p>&nbsp; &nbsp; 首先数据源为地理要素数据集，坐标为WGS84坐标系，然后通过投影转换工具得到投影坐标系下的要素数据集。地理坐标系统下的要素数据集用来构建瓦片索引和分割区域，可以得到索引树、瓦片url、瓦片包围盒、数据包围盒。投影坐标系下的要素数据集用于接下来的要素化建模，在区域分割的同时对投影坐标系下的要素按照区域分组，获得与区域对应的要素组，对每一组要素集计算几何体误差。<br>&nbsp; &nbsp; 将要素组导入到建模软件中，根据建筑物的高度以及纹理图片进行建模。可以构建多要素的模型或者单要素的模型，若进行单要素建模则需要再进行模型的合并。<br>&nbsp; &nbsp; 然后将多要素模型通过格式转换成多要素gltf，再将其和要素组中的属性数据一起组装成瓦片文件b3dm。同时，瓦片url、瓦片包围盒、数据包围盒、几何体误差构成瓦片元数据，与索引树一起构成JSON树，并写入tileset.json文件中，最后形成完成的3DTiles。</p>
-<h2 id="3-地理要素数据的3DTiles生产"><a href="#3-地理要素数据的3DTiles生产" class="headerlink" title="3. 地理要素数据的3DTiles生产"></a>3. 地理要素数据的3DTiles生产</h2><p>3.1 下载shp数据，对属性数据进行补齐，增加建筑物高度字段。<br>3.2 利用ArcGIS对shp数据进行投影变换。<br>3.3 将整个区域根据LOD准则进行划分（一般选取四叉树分割），选取一些大型或标志性建筑作为根节点，然后根据四叉树分割的四块区域作为根节点的子节点进行存储。这样就相当于生成了5个shp文件，然后进一步得到tileset.json文件。<br>3.4 将包含部分地理要素的shp文件导入到建模软件中建模。首先将划分后的shp文件导出为CAD文件，然后将CAD文件在3ds MAX中加载。因为加载到3ds MAX中的CAD是以线的形式存储的，所以需要将线转换为可编辑多边形。之后通过编组、平移、解组的方式将所有数据移动到坐标原点附近，这样操作的目的是使瓦片模型数据采用局部空间直角坐标框架。对模型的构建主要使用面的挤出功能，同时使用高清照片进行贴图。建模完成后还要将要素的id编辑到场景下对应的根节点名称中，用于后面的_BATCHID的添加与属性数据的<br>3.5 接下来是进行b3dm瓦片的转换。首先将3ds Max建模后的模型数据导出成obj文件，然后将obj文件转换成glb文件，再将glb与属性数据根据场景根节点预先记录的id号进行映射，构造b3dm。最后，将b3dm按照tileset.json中的url放置到指定文件位置，至此3DTiles构建完成。</p>
+<h2 id="地理要素数据的3DTiles生产"><a href="#地理要素数据的3DTiles生产" class="headerlink" title="地理要素数据的3DTiles生产"></a>地理要素数据的3DTiles生产</h2><p>3.1 下载shp数据，对属性数据进行补齐，增加建筑物高度字段。<br>3.2 利用ArcGIS对shp数据进行投影变换。<br>3.3 将整个区域根据LOD准则进行划分（一般选取四叉树分割），选取一些大型或标志性建筑作为根节点，然后根据四叉树分割的四块区域作为根节点的子节点进行存储。这样就相当于生成了5个shp文件，然后进一步得到tileset.json文件。<br>3.4 将包含部分地理要素的shp文件导入到建模软件中建模。首先将划分后的shp文件导出为CAD文件，然后将CAD文件在3ds MAX中加载。因为加载到3ds MAX中的CAD是以线的形式存储的，所以需要将线转换为可编辑多边形。之后通过编组、平移、解组的方式将所有数据移动到坐标原点附近，这样操作的目的是使瓦片模型数据采用局部空间直角坐标框架。对模型的构建主要使用面的挤出功能，同时使用高清照片进行贴图。建模完成后还要将要素的id编辑到场景下对应的根节点名称中，用于后面的_BATCHID的添加与属性数据的<br>3.5 接下来是进行b3dm瓦片的转换。首先将3ds Max建模后的模型数据导出成obj文件，然后将obj文件转换成glb文件，再将glb与属性数据根据场景根节点预先记录的id号进行映射，构造b3dm。最后，将b3dm按照tileset.json中的url放置到指定文件位置，至此3DTiles构建完成。</p>
 <p>参考文献：</p>
 <ol>
 <li>3D<em>Tiles定义解析与生产规范设计</em>曹浩泽</li>
+<li>基于Cesium平台的多维地球空间数据可视化_王忠樑</li>
 </ol>
 
     
